@@ -100,7 +100,11 @@ app.post('/api/signup', async (req, res) => {
 
         try {
             await sendEmail(email, emailSubject, emailContent);
-            res.json({ message: 'Signup successful! Please check your email for the OTP.', token });
+            res.json({
+  success: true,
+  message: 'Signup successful. Check your email to verify your account.',
+  token
+});
         } catch (error) {
             return res.status(500).json({ message: 'Failed to send OTP. Please try again.' });
         }
