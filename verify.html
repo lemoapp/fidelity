@@ -8,6 +8,7 @@
 </head>
 <body>
   <div class="container">
+    <img src="./images/Fidelity.png" alt="">
     <h2>Email Verification</h2>
     <p>Enter the OTP sent to your email to complete your registration.</p>
 
@@ -55,7 +56,7 @@
           messageBox.textContent = result.message;
           messageBox.className = "message success";
           setTimeout(() => {
-            window.location.href = "/login"; // or home page
+            window.location.href = "/login.html"; // or home page
           }, 2000);
         } else {
           messageBox.textContent = result.message;

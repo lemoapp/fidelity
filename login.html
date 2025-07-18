@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Fidelity</title>
+  <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <img src="./images/Fidelity.png" alt="">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button onclick="handleLogin()">Login</button>
+    <div class="loader" id="loader"></div>
+    <div class="message" id="message"></div>
+
+    <p>Dont have an account yet? <a href="signup.html">Sign up</a></p>
+  </div>
+
+  <script>
+    async function handleLogin() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const loader = document.getElementById('loader');
+      const message = document.getElementById('message');
+
+      message.textContent = '';
+
+      if (!email || !password) {
+        message.textContent = 'Please enter both email and password.';
+        return;
+      }
+
+      loader.style.display = 'block';
+
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+        loader.style.display = 'none';
+
+        if (result.success) {
+          // Save email to localStorage
+          localStorage.setItem('userEmail', result.userEmail);
+
+          // Redirect
+          if (result.isAdmin) {
+            window.location.href = '/admin-dashboard.html'; // Placeholder
+          } else {
+            window.location.href = '/user-dashboard.html'; // Placeholder
+          }
+        } else {
+          message.textContent = result.message || 'Login failed.';
+        }
+      } catch (err) {
+        loader.style.display = 'none';
+        message.textContent = 'An error occurred. Please try again.';
+        console.error('Login error:', err);
+      }
+    }
+  </script>
+</body>
+</html>
