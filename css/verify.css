@@ -1,0 +1,76 @@
+ body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #222831;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 1.5rem;
+    }
+
+    input[type="email"],
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #FF9505;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .loading {
+      display: none;
+      margin-top: 1rem;
+      color: #03C4A1;
+    }
+
+    .message {
+      margin-top: 1rem;
+      font-size: 14px;
+    }
+
+    .success {
+      color: #28a745;
+    }
+
+    .error {
+      color: #e63946;
+    }
