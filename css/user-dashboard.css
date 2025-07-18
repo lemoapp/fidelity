@@ -1,0 +1,75 @@
+* { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Poppins", serif;
+      background: url('/images/Desktop\ -\ 5.png');
+    }
+    header {
+      padding: 1rem;
+      background: #ffffff;
+      color: rgb(0, 0, 0);
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .coin-list {
+      padding: 0.5rem;
+    }
+    .coin-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8f8f8cc;
+      padding: 10px;
+      margin-bottom: 5px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      cursor: pointer;
+    }
+    .coin-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .coin-left img {
+      width: 20px;
+      height: 20px;
+    }
+    .coin-name { font-size: 13px; font-weight: bold; }
+    .coin-symbol { font-size: 10px; color: #777; }
+    .coin-price {
+      text-align: right;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    .positive { color: green; }
+    .negative { color: red; }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #0f1115;
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.75rem 0;
+    }
+    .bottom-nav div {
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+    .bottom-nav div.active {
+      opacity: 1;
+      font-weight: bold;
+      color: #4caf50;
+    }
+    .loading {
+      text-align: center;
+      padding: 1rem;
+      color: #888;
+    }
+    .sparkline {
+      width: 70px;
+      height: 30px;
+    }

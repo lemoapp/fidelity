@@ -3,85 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SNERE - Market</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-    }
-    header {
-      padding: 1rem;
-      background: #ff9505;
-      color: white;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.25rem;
-    }
-    .coin-list {
-      padding: 0.5rem;
-    }
-    .coin-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #f8f8f8;
-      padding: 1rem;
-      margin-bottom: 0.5rem;
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      cursor: pointer;
-    }
-    .coin-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .coin-left img {
-      width: 30px;
-      height: 30px;
-    }
-    .coin-name { font-size: 0.95rem; font-weight: bold; }
-    .coin-symbol { font-size: 0.75rem; color: #777; }
-    .coin-price {
-      text-align: right;
-      font-weight: bold;
-    }
-    .positive { color: green; }
-    .negative { color: red; }
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #222831;
-      color: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 0.75rem 0;
-    }
-    .bottom-nav div {
-      font-size: 0.85rem;
-      opacity: 0.6;
-    }
-    .bottom-nav div.active {
-      opacity: 1;
-      font-weight: bold;
-      color: #ff9505;
-    }
-    .loading {
-      text-align: center;
-      padding: 1rem;
-      color: #888;
-    }
-    .sparkline {
-      width: 70px;
-      height: 30px;
-    }
-  </style>
-
+  <title>Fidelity - Market</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="./css/user-dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -96,101 +23,106 @@
     <div>Portfolio</div>
   </div>
 
-  <script>
-    // Redirect if not logged in
-    const email = localStorage.getItem("userEmail");
-    if (!email) window.location.href = "login.html";
+ <script>
+  // Redirect if not logged in
+  const email = localStorage.getItem("userEmail");
+  if (!email) window.location.href = "login.html";
 
-    const container = document.getElementById("coin-container");
-    const loading = document.getElementById("loading");
+  const container = document.getElementById("coin-container");
+  const loading = document.getElementById("loading");
 
-    let page = 1;
-    let isLoading = false;
+  let page = 1;
+  let isLoading = false;
 
-    async function loadCoins() {
-      if (isLoading) return;
-      isLoading = true;
-      loading.style.display = "block";
+  async function loadCoins() {
+    if (isLoading) return;
+    isLoading = true;
+    loading.style.display = "block";
 
-      try {
-        const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=true`);
-        const data = await res.json();
+    try {
+      const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=true`);
+      const data = await res.json();
 
-        data.forEach(coin => {
-          const card = document.createElement("div");
-          card.className = "coin-card";
+      data.forEach(coin => {
+        const card = document.createElement("div");
+        card.className = "coin-card";
 
-          const priceChange = coin.price_change_percentage_24h?.toFixed(2);
-          const isPositive = priceChange >= 0;
+        const priceChange = coin.price_change_percentage_24h?.toFixed(2);
+        const isPositive = priceChange >= 0;
 
-          card.innerHTML = `
-            <div class="coin-left">
-              <img src="${coin.image}" alt="${coin.name}">
-              <div>
-                <div class="coin-name">${coin.name}</div>
-                <div class="coin-symbol">${coin.symbol.toUpperCase()}</div>
-              </div>
+        card.innerHTML = `
+          <div class="coin-left">
+            <img src="${coin.image}" alt="${coin.name}">
+            <div>
+              <div class="coin-name">${coin.name}</div>
+              <div class="coin-symbol">${coin.symbol.toUpperCase()}</div>
             </div>
-            <div class="coin-price">
-              $${coin.current_price.toLocaleString()}<br/>
-              <span class="${isPositive ? 'positive' : 'negative'}">${priceChange}%</span>
-              <canvas id="spark-${coin.id}" class="sparkline"></canvas>
-            </div>
-          `;
+          </div>
+          <div class="coin-price">
+            $${coin.current_price.toLocaleString()}<br/>
+            <span class="${isPositive ? 'positive' : 'negative'}">${priceChange}%</span>
+            <canvas id="spark-${coin.id}" class="sparkline"></canvas>
+          </div>
+        `;
 
-          // Make row clickable
-          card.addEventListener("click", () => {
+        // Fix: Store coin data correctly on click before redirecting
+        card.addEventListener("click", () => {
+          try {
             localStorage.setItem("selectedCoin", JSON.stringify(coin));
             window.location.href = "buy.html";
-          });
-
-          container.appendChild(card);
-
-          // Draw sparkline
-          const ctx = card.querySelector(`#spark-${coin.id}`).getContext('2d');
-          new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: coin.sparkline_in_7d.price.map((_, i) => i),
-              datasets: [{
-                data: coin.sparkline_in_7d.price,
-                borderColor: isPositive ? 'green' : 'red',
-                borderWidth: 1,
-                pointRadius: 0,
-                fill: false,
-              }]
-            },
-            options: {
-              responsive: false,
-              elements: { line: { tension: 0.3 }},
-              plugins: { legend: { display: false }},
-              scales: {
-                x: { display: false },
-                y: { display: false }
-              }
-            }
-          });
+          } catch (e) {
+            console.error("Failed to save coin data:", e);
+          }
         });
 
-        page++;
-      } catch (err) {
-        loading.innerText = "Failed to load data.";
-        console.error("API error:", err);
-      }
+        container.appendChild(card);
 
-      isLoading = false;
-      loading.style.display = "none";
+        // Draw sparkline
+        const ctx = card.querySelector(`#spark-${coin.id}`).getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: coin.sparkline_in_7d.price.map((_, i) => i),
+            datasets: [{
+              data: coin.sparkline_in_7d.price,
+              borderColor: isPositive ? 'green' : 'red',
+              borderWidth: 1,
+              pointRadius: 0,
+              fill: false,
+            }]
+          },
+          options: {
+            responsive: false,
+            elements: { line: { tension: 0.3 }},
+            plugins: { legend: { display: false }},
+            scales: {
+              x: { display: false },
+              y: { display: false }
+            }
+          }
+        });
+      });
+
+      page++;
+    } catch (err) {
+      loading.innerText = "Failed to load data.";
+      console.error("API error:", err);
     }
 
-    // Load initial data
-    loadCoins();
+    isLoading = false;
+    loading.style.display = "none";
+  }
 
-    // Infinite scroll
-    window.addEventListener("scroll", () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-        loadCoins();
-      }
-    });
-  </script>
+  // Load initial data
+  loadCoins();
+
+  // Infinite scroll
+  window.addEventListener("scroll", () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+      loadCoins();
+    }
+  });
+</script>
+
 </body>
 </html>
