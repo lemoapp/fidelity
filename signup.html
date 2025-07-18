@@ -10,6 +10,18 @@
   </style>
 </head>
 <body>
+<div class="loader" id="loader">
+  <span>
+    <span>F</span>
+    <span>I</span>
+    <span>D</span>
+    <span>E</span>
+    <span>L</span>
+    <span>I</span>
+    <span>T</span>
+    <span>Y</span>
+  </span>
+</div>
 
   <div class="signup-container">
     <img src="./images/Fidelity.png" alt="">
@@ -94,7 +106,7 @@
       };
 
       try {
-        const res = await fetch('https://your-backend-url/register', {
+        const res = await fetch('/api/signup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
