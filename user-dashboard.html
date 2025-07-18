@@ -12,7 +12,19 @@
 </head>
 <body>
 
-  <header>SNERE Market</header>
+  <header>Fidelity Coin Market</header>
+<div class="market-tabs">
+  <div class="tab active">All</div>
+  <div class="tab">DeFi</div>
+  <div class="tab">NFT</div>
+  <div class="tab">Metaverse</div>
+  <div class="tab">Layer 1</div>
+  <div class="tab">Layer 2</div>
+  <div class="tab">BNB Chain</div>
+  <div class="tab">Solana</div>
+  <div class="tab">Ethereum</div>
+  <!-- Add more as needed -->
+</div>
 
   <div id="coin-container" class="coin-list"></div>
   <div id="loading" class="loading">Loading...</div>
@@ -122,6 +134,24 @@
       loadCoins();
     }
   });
+
+
+  const tabs = document.querySelectorAll(".market-tabs .tab");
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelector(".market-tabs .active").classList.remove("active");
+    tab.classList.add("active");
+
+    // Optionally filter coins here based on tab text
+    const selectedCategory = tab.textContent;
+    console.log("Selected Tab:", selectedCategory);
+
+    // Example: handle filtering or fetch logic
+    // filterCoinsByCategory(selectedCategory);
+  });
+});
+
 </script>
 
 </body>

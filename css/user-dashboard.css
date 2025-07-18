@@ -3,6 +3,7 @@
       margin: 0;
       font-family: "Poppins", serif;
       background: url('/images/Desktop\ -\ 5.png');
+      background-position: center;
     }
     header {
       padding: 1rem;
@@ -12,6 +13,38 @@
       font-weight: bold;
       font-size: 14px;
     }
+    .market-tabs {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px 16px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  white-space: nowrap;
+  gap: 12px;
+  scroll-snap-type: x mandatory;
+}
+
+.market-tabs .tab {
+  padding: 4px 8px;
+  font-size: 10px;
+  color: #555;
+  border-radius: 16px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  transition: all 0.2s ease;
+}
+
+.market-tabs .tab:hover {
+  background-color: #eaeaea;
+}
+
+.market-tabs .tab.active {
+  background-color: #4caf50;
+  color: white;
+}
+
     .coin-list {
       padding: 0.5rem;
     }
