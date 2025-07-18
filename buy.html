@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buy Coin - Checkers</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 20px;
+      color: #666;
+    }
+
+    .container {
+      display: none;
+      padding: 1rem;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .coin-info {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+    }
+
+    .coin-info h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .coin-info p {
+      margin: 0.2rem 0;
+    }
+
+    #sparkline {
+      width: 100%;
+      height: 100px;
+    }
+
+    .buy-btn {
+      width: 100%;
+      padding: 1rem;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader">Loading coin details...</div>
+
+  <div class="container" id="container">
+    <div class="coin-info">
+      <h2 id="coinName">Loading...</h2>
+      <p id="coinSymbol"></p>
+      <p id="coinPrice"></p>
+      <p id="coinMarketCap"></p>
+      <canvas id="sparkline"></canvas>
+    </div>
+    <button class="buy-btn">Buy (Dummy)</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const coinId = params.get('id');
+
+    const sparklineCanvas = document.getElementById('sparkline');
+    const container = document.getElementById('container');
+    const loader = document.getElementById('loader');
+
+    const checkLogin = () => {
+      const email = localStorage.getItem('userEmail');
+      if (!email) {
+        location.href = 'login.html';
+      }
+    };
+
+    const fetchCoinData = async () => {
+      try {
+        const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`);
+        const data = await res.json();
+
+        document.getElementById('coinName').textContent = data.name;
+        document.getElementById('coinSymbol').textContent = `Symbol: ${data.symbol.toUpperCase()}`;
+        document.getElementById('coinPrice').textContent = `Price: $${data.market_data.current_price.usd.toLocaleString()}`;
+        document.getElementById('coinMarketCap').textContent = `Market Cap: $${data.market_data.market_cap.usd.toLocaleString()}`;
+
+        const sparkData = data.market_data.sparkline_7d.price;
+        const ctx = sparklineCanvas.getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: sparkData.map((_, index) => index),
+            datasets: [{
+              data: sparkData,
+              borderColor: 'orange',
+              borderWidth: 2,
+              fill: false,
+              tension: 0.4
+            }]
+          },
+          options: {
+            plugins: { legend: { display: false } },
+            scales: { x: { display: false }, y: { display: false } },
+            elements: { point: { radius: 0 } }
+          }
+        });
+
+        loader.style.display = 'none';
+        container.style.display = 'block';
+      } catch (error) {
+        alert('Failed to load coin data');
+        console.error(error);
+      }
+    };
+
+    checkLogin();
+    fetchCoinData();
+  </script>
+</body>
+</html>
