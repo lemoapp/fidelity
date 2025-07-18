@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - Checkers</title>
+  <link rel="stylesheet" href="./css/signup.css" />
+  <style>
+    
+  </style>
+</head>
+<body>
+
+  <div class="signup-container">
+    <img src="./images/Fidelity.png" alt="">
+    <h2>Create Fidelity Account</h2>
+    <form id="signupForm">
+      <div class="input-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" required />
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required />
+      </div>
+
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" required />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+      </div>
+
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" required />
+        <div class="error" id="passMismatch">Passwords do not match.</div>
+      </div>
+
+      <div class="input-group">
+        <label for="referrer">Referrer (optional)</label>
+        <input type="text" id="referrer" />
+      </div>
+
+      <div class="mb-4 text-sm text-gray-700">
+  <label class="flex items-start gap-2" style="color: #535353; font-size: 12px; font-weight: bold;">
+    <input type="checkbox" id="agreeLaws" class="mt-1 accent-orange-500" />
+    <span>I agree to abide by all relevant <a href="#" class="text-orange-600 underline">financial laws and regulations</a>.</span>
+  </label><br>
+  <label class="flex items-start gap-2 mt-2" style="color: #535353; font-size: 12px; font-weight: bold;">
+    <input type="checkbox" id="agreeTerms" class="mt-1 accent-orange-500" />
+    <span>I accept the <a href="#" class="text-orange-600 underline">Fidelity's company terms and conditions</a>.</span>
+  </label><br><br>
+</div>
+
+      <button type="submit" class="submit-btn">Sign Up</button>
+    </form><br><br><br><br>
+
+    <div class="loader" id="loader">
+      <span>Checkers</span>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const loader = document.getElementById('loader');
+    const pass = document.getElementById('password');
+    const confirmPass = document.getElementById('confirmPassword');
+    const mismatch = document.getElementById('passMismatch');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      if (pass.value !== confirmPass.value) {
+        mismatch.style.display = 'block';
+        return;
+      } else {
+        mismatch.style.display = 'none';
+      }
+
+      loader.style.display = 'flex';
+
+      // Simulate async signup action (replace with real fetch to your API)
+      const payload = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        username: document.getElementById('username').value,
+        password: pass.value,
+        referrer: document.getElementById('referrer').value,
+      };
+
+      try {
+        const res = await fetch('https://your-backend-url/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          window.location.href = 'verify.html'; // Or wherever you want to redirect
+        } else {
+          alert(data.message || 'Signup failed.');
+        }
+      } catch (err) {
+        alert('Server error. Please try again.');
+      } finally {
+        loader.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

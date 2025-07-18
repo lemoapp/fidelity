@@ -1,0 +1,104 @@
+body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('/images/Desktop\ -\ 5.png');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .signup-container {
+      background-color: rgba(255, 255, 255, 0.219);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      max-width: 400px;
+      width: 100%;
+      position: relative;
+    }
+
+    .signup-container img{
+        width: 130px;
+    }
+
+    .signup-container h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+
+    .input-group {
+      margin-bottom: 1rem;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 13px;
+      color: #535353;
+      font-weight: bold;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 14px;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #4caf50;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .submit-btn:hover {
+      background-color: #e07e00;
+    }
+
+    .loader {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1rem;
+      display: none;
+    }
+
+    .loader span {
+      font-size: 2rem;
+      font-weight: bold;
+      animation: pulse 1s infinite;
+      color: #FF9505;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.2; }
+      50% { opacity: 1; }
+      100% { opacity: 0.2; }
+    }
