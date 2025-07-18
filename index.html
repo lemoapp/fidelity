@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fidelity Investments</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+   
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <div id="companyName">
+      <span>F</span><span>I</span><span>D</span><span>E</span><span>L</span><span>I</span><span>T</span><span>Y</span>
+    </div>
+  </div>
+
+  <!-- Welcome Slides -->
+  <div id="welcome">
+    <div class="slides" id="slideContainer">
+  <div class="slide">
+    <img src="./images/Fidelity.png" alt="">
+    <p>Welcome to Fidelity — Take intelligent risks rather than follow the crowd</p>
+    <small>We help you invest with clarity, confidence, and independence.</small>
+  </div>
+  <div class="slide">
+    <img src="./images/Frame 190.png" alt="">
+    <p>Track Live Crypto Prices Instantly</p>
+    <small>Stay updated with real-time data and market movements.</small>
+  </div>
+  <div class="slide">
+    <img src="./images/22664977_NEWS.jpg" alt="">
+    <p>Read the Latest Global Crypto News</p>
+    <small>Get curated news insights that matter to your portfolio.</small>
+  </div>
+  <div class="slide">
+    <img src="./images/3d-illustration-bitcoin-bank-storage.png" alt="">
+    <p>Manage Your Portfolio with Ease</p>
+    <small>Monitor gains, losses, and overall performance in one place.</small>
+  </div>
+</div>
+
+    <div class="controls">
+      <button id="prev"><<<</button>
+      <button id="next">>>></button>
+      <button id="getStarted" style="display:none;">Get Started</button>
+    </div>
+  </div>
+
+  <script>
+    const splash = document.getElementById("splash");
+    const welcome = document.getElementById("welcome");
+
+    setTimeout(() => {
+      splash.style.opacity = 0;
+      setTimeout(() => {
+        splash.style.display = "none";
+        if (localStorage.getItem("email")) {
+          window.location.href = "market.html";
+        } else {
+          welcome.style.display = "block";
+        }
+      }, 600);
+    }, 2000);
+
+    const slideContainer = document.getElementById("slideContainer");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
+    const getStartedBtn = document.getElementById("getStarted");
+
+    let currentSlide = 0;
+    const totalSlides = 4;
+
+    function updateSlide() {
+      slideContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+      getStartedBtn.style.display = currentSlide === totalSlides - 1 ? "inline-block" : "none";
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (currentSlide > 0) currentSlide--;
+      updateSlide();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (currentSlide < totalSlides - 1) currentSlide++;
+      updateSlide();
+    });
+
+    getStartedBtn.addEventListener("click", () => {
+      window.location.href = "signup.html";
+    });
+
+    let startX = 0;
+    slideContainer.addEventListener("touchstart", (e) => startX = e.touches[0].clientX);
+    slideContainer.addEventListener("touchend", (e) => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50 && currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlide();
+      } else if (endX - startX > 50 && currentSlide > 0) {
+        currentSlide--;
+        updateSlide();
+      }
+    });
+  </script>
+</body>
+</html>
