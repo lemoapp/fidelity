@@ -11,7 +11,7 @@
 
     /* Splash Screen */
     #splash {
-      background-color: #920000; /* Smart Orange */
+      background-color: #0f1115; /* Smart Orange */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -25,7 +25,7 @@
     #companyName span {
       opacity: 0;
       font-size: 20px;
-      color: white;
+      color: #4caf50;
       animation: reveal 1s forwards;
     }
     #companyName span:nth-child(1) { animation-delay: 0s; }
@@ -89,7 +89,7 @@
       font-size: 13px;
       border: none;
       border-radius: 5px;
-      background: #920000;
+      background: #4caf50;
       color: white;
       cursor: pointer;
     }
