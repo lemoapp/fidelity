@@ -8,6 +8,10 @@ const router = express.Router();
 const cors = require('cors');
 const path = require('path');
 const cron = require('node-cron');
+const fetch = require('node-fetch');
+const NEWS_API_URL = 'https://newsapi.org/v2/top-headlines'; // or whatever API endpoint you're using
+
+
 
 dotenv.config();
 
@@ -227,6 +231,53 @@ app.post('/api/login', async (req, res) => {
         res.status(500).json({ success: false, message: 'An error occurred during login.' });
     }
 });
+
+
+app.get('/api/news', async (req, res) => {
+  const category = req.query.category || 'general';
+  const NEWS_API_KEY = '16a42969c1424ceb879197d2e62c760a';
+  const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${NEWS_API_KEY}`;
+
+  try {
+    const response = await fetch(url, {
+      headers: { 'Accept': 'application/json' },
+    });
+
+    const contentType = response.headers.get('content-type');
+    
+    if (!contentType || !contentType.includes('application/json')) {
+      const rawText = await response.text();
+      console.error('Non-JSON response body:', rawText);
+      throw new Error('Expected JSON but got something else');
+    }
+
+    const data = await response.json();
+    console.log('Raw API data:', data);
+
+
+    if (!data.articles) {
+      console.error('API response missing "articles":', data);
+      throw new Error('Missing "articles" field in API response');
+    }
+
+    // ✅ FIX HERE: send response as { news: [...] }
+    const transformed = data.articles.map(article => ({
+      title: article.title,
+      description: article.description || '',
+      imgUrl: article.urlToImage || 'https://via.placeholder.com/400x200?text=No+Image',
+      link: article.url,
+      feedDate: article.publishedAt
+    }));
+
+    console.log('News fetched successfully');
+    res.json({ news: transformed }); // ✅ match frontend expectations
+    console.log(transformed)
+  } catch (error) {
+    console.error('Error fetching news:', error.message);
+    res.status(500).json({ error: 'Failed to fetch news. See logs for more info.' });
+  }
+});
+
 
 
 

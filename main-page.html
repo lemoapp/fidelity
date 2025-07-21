@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="  #000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Dashboard - Biggycapital</title>
+    <link rel="stylesheet" href="./css/main-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Jacquarda+Bastarda+9&family=Poppins:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+
+    
+</head>
+<body>
+    <div id="loader">Hold on dashboard is loading...</div>
+    <section class="header">
+        <p style="color: rgb(0, 0, 0); font-weight: bold;"><span id="username">Loading...</span></p>
+        <a href="profile.html">
+            <div class="logo">
+            <img src="./images/2606572_5907.jpg" alt="">
+        </div>
+        </a>
+        
+
+    </section>
+
+    <!-- <section class="search">
+        <input type="text" class="gradient-border" placeholder="Search...">
+    </section> -->
+
+    <div class="balance-container">
+        <div class="balance-display">
+            <h3>Balance</h3>
+            <span id="balance">*****</span>
+            <button id="toggleBalance" aria-label="Toggle balance visibility">
+                <img src="./images/interface_13741441.png" alt="Toggle Balance" />
+            </button>
+        </div>
+        <div class="button">
+            <button id="depositButton">+</button> <!-- Added ID for button -->
+        </div>
+    </div>
+
+    <section class="functions">
+        <div class="functions1">
+            <a href="invest.html">
+                <div class="image">
+                    <!-- <img src="./images/Donate.png" alt=""> -->
+                    <p>Overview</p>
+                </div>
+            </a>
+           <a href="withdrawal.html">
+            <div class="image">
+                <!-- <img src="./images/Request Money.png" alt=""> -->
+                <p>Transactions</p>
+            </div>
+           </a>
+           <a href="chatbot.html">
+            <div class="image">
+                <!-- <img src="./images/Chat.png" alt=""> -->
+                <p>Earn</p>
+            </div>
+        </a>
+        <!-- <a href="assets.html">
+            <div class="image">
+                <img src="./images/Crypto Trading Options.png" alt="">
+                <p>Assets</p>
+            </div>
+        </a> -->
+           
+        </div> 
+        <!-- <div class="functions2">
+            <a href="long-term.html">
+                <div class="image">
+                    <img src="./images/wallet_6948492.png" alt="">
+                    <p>Long term <br>earning</p>
+                </div>
+            </a>
+            
+            <a href="stripe.html">
+                <div class="image">
+                    <img src="./images/user_9303328.png" alt="">
+                    <p>Fiat <br> Deposit</p>
+                </div>
+            </a>
+        </div> -->
+    </section>
+    <div class="spinner" id="loadingSpinner"></div>
+    
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h3>Welcome to Fidelity Investments</h3>
+            <p>Invest smartly and grow your wealth with us.</p>
+            <a href="invest.html" class="cta-button" id="invest-now-button">Invest now</a><br><br>
+            <h3>Our Plans</h3>
+            <div class="plans">
+                <div class="plan-line1">
+                    <div class="plan">
+                        <a href="invest.html"><img src="./images/Frame 34.png" alt=""></a>
+                        <p>
+                            Our Plan A is ideal for investors seeking steady, low-risk growth. With a 20% return on investment (ROI), this plan offers a solid and reliable performance for those who prefer a conservative approach. It’s a great way to begin your investment journey, allowing you to build confidence while minimizing exposure to market fluctuations.
+                        </p>
+                    </div>
+                    <div class="plan">
+                        <a href="invest.html">
+                            <img src="./images/Frame 35.png" alt="">
+                        </a>
+                        <p>
+                            Plan B: 35% Returns
+                            For investors seeking moderate growth with slightly higher returns, Plan B offers a 35% ROI. This plan is balanced, providing an opportunity for enhanced returns without taking on excessive risk. It’s perfect for investors looking to move beyond the conservative approach and aim for better growth potential.
+                        </p>
+                    </div>
+                    <div class="plan">
+                        <a href="invest.html">
+                            <img src="./images/Frame 36.png" alt="">
+                        </a>
+                        <p>
+                            Plan C: 50% Returns
+                            Plan C is for investors ready to engage in higher-reward opportunities, with a 50% ROI. This plan is structured for those who are comfortable with moderate risk and want to experience significant gains. It’s an ideal choice for those seeking to capitalize on market opportunities while still maintaining some level of risk control.
+                        </p>
+                    </div>
+                    <!-- <div class="plan">
+                        <a href="invest.html">
+                            <img src="./images/Frame 37.png" alt="">
+                        </a>
+                        <p>
+                            Plan D: 100% Returns
+                            For the boldest investors, Plan D offers an exceptional 100% ROI, doubling your investment. This plan targets high-return opportunities and is best suited for those with a higher risk tolerance. It’s designed for investors looking to maximize their capital in the shortest time possible, with the understanding that it comes with increased exposure to market fluctuations.
+                        </p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Deposit Overlay -->
+    <div id="depositOverlay" class="overlay">
+        <div class="overlay-content">
+            <button id="closeOverlay" class="close-button">X</button>
+            <h3>Deposit Options</h3>
+            <div class="option" id="buyDollarOption">
+                <h3>Buy with local currency</h3>
+                <p>Visa, Mastercard, American Express</p>
+            </div>
+            <div class="option" id="depositCryptoOption">
+                <h3>Deposit Crypto</h3>
+                <p>Already have crypto? Deposit directly.</p>
+            </div>
+            <em>
+                We recommend that you use a secure and reliable payment method to ensure a smooth transaction.
+            </em>
+        </div>
+    </div>
+
+
+
+
+
+    
+    <nav class="bottom-nav">
+        <ul class="nav-links">
+            <li><a href="main-page.html"><img src="./images/Home Page.png"><span>Home</span></a></li>
+            <li><a href="chatbot.html"><img src="./images/Chat.png" alt="Services Icon" style=" border-radius: 20rem;"><span>Chat</span></a></li>
+            <li><a href="wallet.html"><img src="./images/Wallet.png" alt="About Icon" style="border-radius: 20rem;"><span>Wallet</span></a></li>
+            <li><a href="profile.html"><img src="./images/Male User.png" alt="About Icon" style="border-radius: 20rem;"><span>Profile</span></a></li>
+            <li><a href="assets.html"><img src="./images/Crypto Trading Options.png" alt="Contact Icon"><span>Assets</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Biggycapital. All rights reserved.</p>
+    </footer>
+    <script src="https://js.stripe.com/v3/"></script>
+<script src="java.js"></script>
+<!-- Smartsupp Live Chat script -->
+<!-- Smartsupp Live Chat script -->
+<!-- <script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = 'ca4f2523f798b867912554a1fae0aa0221f03573';
+    window.smartsupp||(function(d) {
+      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+      c.type='text/javascript';c.charset='utf-8';c.async=true;
+      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+    })(document);
+    </script>
+    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript> -->
+<script>
+window.onload = function () {
+    document.getElementById("loader").style.display = "none"; // Hide loader
+    document.querySelector(".container").style.display = "block"; // Show content
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const userEmail = localStorage.getItem('userEmail');
+    const toggleBalanceBtn = document.getElementById('toggleBalance');
+    const balanceDisplay = document.getElementById('balance');
+    const usernameDisplay = document.getElementById('username'); // Add this in your HTML
+    let actualBalance;
+    const loadingSpinner = document.getElementById('loadingSpinner');
+
+    if (userEmail) {
+        fetch('/api/getBalance', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: userEmail })
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                actualBalance = data.balance;
+                balanceDisplay.textContent = actualBalance ? `$${actualBalance}` : 'No balance available';
+
+                // Display the username
+                if (data.username && usernameDisplay) {
+                    usernameDisplay.textContent = data.username;
+                }
+            } else {
+                console.error('User not found:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+        });
+    } else {
+        console.error('User email not found in local storage');
+    }
+
+    // Toggle balance visibility
+    toggleBalanceBtn.addEventListener('click', () => {
+        balanceDisplay.textContent = (balanceDisplay.innerText === '*****')
+            ? (actualBalance ? `$${actualBalance}` : 'No balance available')
+            : '*****';
+    });
+});
+
+// Spinner logic for navigation
+document.getElementById('buyDollarOption').addEventListener('click', () => {
+    loadingSpinner.style.display = 'block';
+    window.location.href = 'stripe.html';
+});
+
+document.getElementById('depositCryptoOption').addEventListener('click', () => {
+    loadingSpinner.style.display = 'block';
+    window.location.href = 'deposit-crypto.html';
+});
+
+window.addEventListener('load', () => {
+    loadingSpinner.style.display = 'none';
+});
+
+// Deposit overlay logic
+const depositButton = document.getElementById('depositButton');
+const depositOverlay = document.getElementById('depositOverlay');
+const closeOverlayButton = document.getElementById('closeOverlay');
+
+depositButton.addEventListener('click', () => {
+    depositOverlay.classList.add('show');
+});
+
+closeOverlayButton.addEventListener('click', () => {
+    depositOverlay.classList.remove('show');
+});
+
+
+
+   // Duplicate tabs to allow seamless infinite scrolling
+    const track = document.getElementById('carousel-track');
+    track.innerHTML += track.innerHTML;
+</script>
+
+</body>
+</html>
