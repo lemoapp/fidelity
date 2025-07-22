@@ -1,0 +1,121 @@
+body {
+    font-family: "Poppins", serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    /* background: linear-gradient(135deg, #00278aad 20%, #011341 40%, #0490c76c 60%, #547feb 80%);
+    background-size: 200% 200%;
+    animation: gradientFlow 10s infinite alternate ease-in-out; */
+}
+
+/* @keyframes gradientFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+} */
+
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+#background-video img{
+    width: 100%;
+}
+
+
+.onboarding-container {
+    width: 100%;
+    height: 100vh;
+    max-width: 750px;
+    overflow: hidden;
+    position: relative;
+    background: #00000063; /* More transparency */
+    backdrop-filter: blur(2px); /* Blurs background */
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+.slide {
+    flex: 1;
+    min-width: 100%;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    
+}
+
+.slide h2{
+    margin-top: 21rem;
+    text-align: left;
+    color: rgb(0, 2, 128);
+    font-size: 25px;
+}
+
+.slides p{
+    margin-bottom: -10rem;
+    text-align: left;
+    color: white;
+    font-size: 14px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10rem;
+}
+
+.logo img{
+    max-width: 160px;  /* Adjust as needed */
+    height: auto;
+    margin-top: 3rem;
+    /* margin-left: -12rem; */
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 55px;
+    font-size: 22px;
+    font-weight: bold;
+
+    
+}
+#prev { background: #cccccc00; }
+#next { background: #007bff00; color: #fff; }
+#skip { background: rgba(226, 104, 4, 0.61); color: #fff; font-size: 14px; font-weight: 100; padding: 5px 20px;}
+#getStarted { background: transparent; color: rgb(2, 0, 128); padding: 10px 25px; margin-top: 10px; font-size: 14px; border: 1px solid rgb(2, 0, 128);}
+
+
+
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    /* font-weight: bold; */
+    z-index: 9999;
+    color: white;
+}

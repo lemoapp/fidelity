@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="./css/admindash.css">
+</head>
+<body>
+    <div class="body">
+        <div class="menu">
+            <center> <table width="1280" border="0" cellpadding="0" cellspacing="0" > <tr> <td valign=top> <table cellspacing=0 cellpadding=0 border=0 width=100%> <tr> <td background="images/ver.gif" bgcolor=#FF8D00><img src="images/top.gif" border="0" align=left></td> <td background="images/ver.gif" bgcolor=#FF8D00 valign=bottom align=right> <span style="font-family: verdana; font-size: 12px; color: white"> <b> 
+                <div id="google_translate_element"></div> <a href="admindash.html" class=toplink>Home</a> &middot;  <a href="signin.html" class=toplink>Logout</a></b></span>&nbsp; &nbsp; </td> </tr> </table> </td> </tr> <tr> <td valign=top> <table cellspacing=0 cellpadding=1 border=0 width=100% bgcolor=#ff8d00> <tr> <td> <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0"> <tr bgcolor="#FFFFFF" valign="top">  <td width="500" align=center>  <ul class="nav" style="width:220px">   <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Plans</div> <div class="dropdown-menu">  <a class="dropdown-item" href="?a=programs"><i class="fa fa-signal"></i> Investment Programs</a>  <a class="dropdown-item" href="?a=expiring_deposits"><i class="fa fa-hourglass-end"></i> Expiring Deposits</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Users </div> <div class="dropdown-menu">  <a onclick="window.location.href='users.html'" class="dropdown-item" ><i class="fa fa-user"></i> Users <span class="badge sticker badge-success"><span id="totalUsersCount">0</span></span></a>  <a class="dropdown-item" href="?a=ext_accounts_blacklist"><i class="fa fa-times-circle"></i> Accounts Blacklist</a>  <a class="dropdown-item" href="?a=top_referral_earnings"><i class="fa fa-trophy"></i> Top Referral Earnings</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Transactions</div> <div class="dropdown-menu">  <a class="dropdown-item" href="?a=transactions"><i class="fa fa-book"></i> Transactions</a>  <a class="dropdown-item" onclick="viewPendingWithdrawals()"><i class="fa fa-hand-paper-o"></i> Withdrawal Requests</a>  <a class="dropdown-item" href="?a=transactions&ttype=add_funds"><i class="fa fa-list"></i> Add Funds</a>  <a class="dropdown-item" href="?a=transactions&ttype=deposit"><i class="fa fa-list"></i> Deposits</a>  <a class="dropdown-item" href="?a=transactions&ttype=withdrawal"><i class="fa fa-list"></i> Withdrawals</a>  <a class="dropdown-item" href="?a=transactions&ttype=earning"><i class="fa fa-list"></i> Earnings</a>  <a class="dropdown-item" href="?a=transactions&ttype=commissions"><i class="fa fa-list"></i> Referral</a>  <a class="dropdown-item" href="?a=transactions&ttype=exchange"><i class="fa fa-list"></i> Exchange</a>  <a class="dropdown-item" href="/pending-deposit"><i class="fa fa-compress"></i> Pending Deposits <span class="badge sticker badge-success"></span></a>  <a class="dropdown-item" href="?a=add_transactions"><i class="fa fa-plus-circle"></i> Add Bonus</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Settings</div>  </li>    <li class="nav-item"> <a class="nav-link" href="?a=logout">Logout</a> </li> </ul>  </td> <td bgcolor="#ff8d00" valign="top" width=1><img src=images/q.gif width=1 height=1></td>  <td bgcolor="#FFFFFF" valign="top" width=99%> 
+        </div>
+        
+        <div class="tables">
+            <h2>User Details</h2>
+            <div id="userDetails">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>User ID</td>
+                            <td>Full Name</td>
+                            <td>Email</td>
+                            <td>Username</td>
+                            <td>Bitcoin Address</td>
+                            <td>Referral Code</td>
+                            <td>Created At</td>
+                            <td>Balance</td>
+                            <td>Total Withdrawals</td>
+                            <td>Total Deposits</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><p><span id="userId"></span></p></td>
+                            <td><p><span id="userFullName"></span></p></td>
+                            <td><p><span id="userEmail"></span></p></td>
+                            <td><p><span id="userUsername"></span></p></td>
+                            <td><p><span id="userBitcoinAddress"></span></p></td>
+                            <td><p><span id="userReferralCode"></span></p></td>
+                            <td><p><span id="userCreatedAt"></span></p></td>
+                            <td><p><span id="userBalance"></span></p></td>
+                            <td><p><span id="userTotalWithdrawals"></span></p></td>
+                            <td><p><span id="userTotalDeposits"></span></p></td>
+                            <td>
+                                <button class="addpenalty" onclick="window.location.href='penalty.html?email=' + encodeURIComponent(document.getElementById('userEmail').textContent)">Add Penalty</button>
+                                <button class="addbonus" onclick="window.location.href='bonus.html?email=' + encodeURIComponent(document.getElementById('userEmail').textContent)">Add Bonus</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+// Retrieve email from the query string of the URL
+const urlParams = new URLSearchParams(window.location.search);
+const email = urlParams.get('email');
+
+// Fetch user details using the email
+document.addEventListener('DOMContentLoaded', function() {
+    if (email) {
+        fetch(`/api/admin/user-details?email=${encodeURIComponent(email)}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                // Check if response is JSON
+                const contentType = response.headers.get("content-type");
+                if (contentType && contentType.includes("application/json")) {
+                    return response.json();
+                } else {
+                    throw new Error("Response is not JSON");
+                }
+            })
+            .then(user => {
+                // Ensure user details are displayed correctly on the page
+                document.getElementById('userId').textContent = user.id || "N/A";
+                document.getElementById('userFullName').textContent = user.full_name || "N/A";
+                document.getElementById('userEmail').textContent = user.email || "N/A";
+                document.getElementById('userUsername').textContent = user.username || "N/A";
+                document.getElementById('userBitcoinAddress').textContent = user.bitcoin_address || "N/A";
+                document.getElementById('userReferralCode').textContent = user.referral_code || "N/A";
+                document.getElementById('userCreatedAt').textContent = user.created_at 
+                    ? new Date(user.created_at).toLocaleDateString() 
+                    : "N/A";
+                document.getElementById('userBalance').textContent = user.balance || "0";
+                document.getElementById('userTotalWithdrawals').textContent = user.total_withdrawals || "0";
+                document.getElementById('userTotalDeposits').textContent = user.total_deposits || "0";
+            })
+            .catch(error => {
+                console.error('Error fetching user details:', error);
+            });
+    } else {
+        console.error('Email not provided in the URL');
+    }
+});
+
+
+    </script>
+</body>
+</html>

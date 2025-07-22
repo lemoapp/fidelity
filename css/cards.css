@@ -1,0 +1,133 @@
+/* General styles for the page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #007b5e23;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #30334B;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #007b5e;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #007b5e8e;
+}
+
+/* Card Display Section */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(135deg, #005cbf, #e51e1e);
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* Bank Name */
+.card .bank-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Card Chip */
+.card .chip {
+    width: 50px;
+    height: 35px;
+    background: #f4c542;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Card Number */
+.card .card-number {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin: 20px 0;
+}
+
+/* Expiry and CVV Section */
+.card .expiry-cvv {
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.expiry-cvv .label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* Cardholder Name Section */
+.card .card-holder {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Mastercard Logo */
+.card .logo {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.card .logo span {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.card .logo .red {
+    background-color: #eb001b;
+}
+
+.card .logo .yellow {
+    background-color: #f79e1b;
+}

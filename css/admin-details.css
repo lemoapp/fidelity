@@ -1,0 +1,105 @@
+/* General styles for the page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+  .poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+  
+  .poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: rgb(243, 186, 64); /* Match theme color */
+    font-size: 18px;
+}
+
+/* Table Styles */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+table thead {
+    background-color: #007b5e; /* Theme color */
+    color: #fff;
+    font-size: 15px;
+}
+
+table th, table td {
+    text-align: left;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+table th {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* No Data Row */
+table tbody tr td {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    table th, table td {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+}

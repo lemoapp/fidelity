@@ -1,0 +1,166 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #007b5e23;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode .setting-item {
+    /* Apply dark theme styles to the settings section too */
+    background-color: #333;
+    color: white;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+  .poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+  
+  .poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+#accountDetails {
+    background: rgba(255, 255, 255, 0.815);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+h4 {
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.detail {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail label {
+    font-size: 10px;
+    color: #666;
+}
+
+.detail span {
+    font-size: 15px;
+    color: #007b5e;
+    flex-grow: 1;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.copy-btn {
+    background-color: #007b5e;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.copy-btn:hover {
+    background-color: #007b5e8c;
+}
+
+.copy-btn:active {
+    background-color: #007b5e85;
+}
+
+/* Tooltip style for copy button */
+.copy-btn:after {
+    content: "Click to copy";
+    display: none;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    background-color: #333;
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 3px;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.copy-btn:hover:after {
+    display: block;
+    opacity: 1;
+}
+
+/* Flexbox layout for responsiveness */
+@media (max-width: 600px) {
+    #accountDetails {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .detail {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .detail label {
+        margin-bottom: 8px;
+    }
+
+    .copy-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+
+.notice{
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.notice-content{
+    background-color: #effd8779;
+    padding: 1rem;
+    font-size: 10px;
+    border-radius: 10px;
+}
+
+.notice-content ul li{
+    margin: 16px 0px;
+    list-style: none;
+}

@@ -1,0 +1,719 @@
+*{
+    padding: 0;
+    z-index: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+  .poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+  
+  .poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+body{
+    background-color: #ffffff;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode .setting-item {
+    /* Apply dark theme styles to the settings section too */
+    background-color: #333;
+    color: white;
+}
+
+.body-container{
+    
+}
+
+nav{
+    padding: 1rem 0rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav button{
+    background: transparent;
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+nav .logo img{
+    width: 5rem;
+    /* height: 1.5rem; */
+}
+
+nav .nav-items img{
+    width: 1.5rem;
+}
+
+.container{
+    padding: 0rem 2rem;
+}
+
+.space{
+    height: 7rem;
+}
+
+.container1{
+    background-color: white;
+    width:100%;
+    border-radius: 10px;
+    position: absolute;
+    margin-top: -7rem;
+    margin-left: -7%;
+    /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.container1 .top{
+    padding: 2rem 1.5rem;
+}
+
+.container1 .top p{
+    font-size: 12px;
+}
+
+.container1 .top .balance{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bolder;
+    margin-top: 5px;
+    color: #007b5e;
+}
+
+.container1 .top .balance .text{
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.616);
+}
+
+.container1 .top .balance p{
+    font-size: 30px;
+}
+
+.container1 .bottom button{
+    color: #30334B;
+    font-size: 25px;
+    background-color: transparent;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid #007b5e;
+    border-radius: 10px;
+    width: 7rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.container1 .bottom{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container1 .bottom .withdraw{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.container1 .bottom .withdraw button{
+    width: 3rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: #1E88E5;
+    color: white;
+}
+
+.container1 .bottom .withdraw label{
+    font-size: 10px;
+    color: #747bb1;
+}
+
+
+.card{
+    margin-top: 11rem;
+    margin-bottom: -10rem;
+    text-align: center;
+}
+
+.card img{
+    width: 80%;
+}
+
+.second{
+    background-color: #007b5e23;
+    height: 75rem;
+}
+
+.second .entries{
+    padding: 2rem 1.5rem;
+}
+
+.second .entries .tabs1{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.second .entries .tabs1 .tab{
+    background-color: white;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.second .entries .tabs1 .tab p{
+    font-size: 10px;
+    color: #747bb1;
+}
+
+.second .entries .tabs1 .tab .amount{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.slideshow-container {
+    max-width: 800px;
+    position: relative;
+    margin: auto;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    margin-top: -2rem;
+}
+
+/* Hide all slides by default */
+.mySlides {
+    display: none;
+}
+
+img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.8s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+/* Dots/Indicators */
+.dots-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.dot {
+    height: 3px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active {
+    background-color: #1E88E5;
+}
+
+.second .container2{
+    padding: 0rem 2rem;
+    margin-top: -1rem;
+}
+
+.second .container2 .top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.second .container2 .top a{
+    font-size: 12px;
+    color: #1E88E5;
+    text-decoration: none;
+    margin-top: 7px;
+}
+
+.second .container2 .transactions{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    height: 13rem;
+   
+}
+
+.second .container2 .transactions .transaction{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.second .container2 .transactions .transaction .left{
+    display: flex;
+    gap: 10px;
+}
+
+.second .container2 .transactions .transaction .left img{
+    width: 3.5rem;
+}
+
+.second .container2 .transactions .transaction .left .details{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.second .container2 .transactions .transaction .left .details h4{
+    font-size: 12px;
+}
+
+.second .container2 .transactions .transaction .left .details p{
+    font-weight: bold;
+    font-size: 10px;
+    color:  rgb(146, 145, 145);
+}
+
+.second .container2 .transactions .transaction .right{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.second .container2 .transactions .transaction .right p{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(29, 213, 127);
+    text-align: right;
+}
+
+.second .container2 .transactions .transaction .right h5{
+    font-size: 10px;
+    color: rgb(146, 145, 145);
+}
+
+.second .container3{
+    padding: 0rem 2rem;
+    margin-top: 1rem;
+}
+
+.second .container3 .top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.second .container3 .top a{
+    font-size: 12px;
+    color: #1E88E5;
+    text-decoration: none;
+    margin-top: 7px;
+}
+
+.second .container3 .cards{
+    padding: 1rem 0rem;
+}
+
+.second .container3 .cards .card1{
+    background: linear-gradient(140deg, #1e3a8a, #7349f0);
+    height: 13rem;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.second .container3 .cards .card1 .top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.second .container3 .cards .card1 .top a{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 1rem;
+    margin-top: 7px;
+    text-decoration: none;
+}
+
+.second .container3 .cards .card1 .mid{
+    padding: 1rem;
+    margin-top: -1rem;
+}
+
+.second .container3 .cards .card1 .mid p{
+    color: rgb(196, 196, 196);
+    font-size: 12px;
+}
+
+.second .container3 .cards .card1 .mid .value{
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 5px;
+    color: white;
+}
+
+.second .container3 .cards .card1 .bottom{
+    padding: 1rem;
+    margin-top: -1rem;
+}
+
+.second .container3 .cards .card1 .bottom p{
+    color: rgb(196, 196, 196);
+    font-size: 12px;
+}
+
+.second .container3 .cards .card1 .bottom .value{
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: white;
+}
+
+.second .container3 .cards .card1 .logo{
+    padding: 1rem;
+}
+
+.second .container3 .cards .card1 .logo img{
+    width: 4rem;
+}
+
+
+.third{
+    margin-bottom: 3rem;
+    text-align: center;
+    background-color: white;
+    padding: 1rem 0rem;
+}
+
+
+.savings-section {
+    position: relative;
+    padding: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    height: 15rem;
+  }
+  
+  .content {
+    z-index: 2;
+    position: relative;
+  }
+
+  .tagline{
+    font-size: 12px;
+    font-weight: 100;
+    margin-top: 15px;
+  }
+  
+  .cta {
+    background-color: #43A047;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  .cta:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+  }
+  
+  .animation {
+    position: absolute;
+    bottom: -40px;
+    right: 10%;
+    width: 140px;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+
+.headline {
+    animation: slideUp 1s ease forwards;
+    opacity: 0;
+  }
+  
+  @keyframes slideUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+.animated-background {
+    background: linear-gradient(45deg, #1E88E5, #0b3bd8);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+  
+.news-section {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: white;
+    margin-top: -4.5rem;
+  }
+  
+  .news-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+  }
+  
+  .news-item {
+    width: 48%;
+    background: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Initially hidden */
+    transform: translateX(-100%);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .news-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .news-title {
+    font-size: 1.2rem;
+    color: #1E88E5;
+    margin: 10px;
+  }
+  
+  .news-summary {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px;
+  }
+  
+  .read-more {
+    display: inline-block;
+    margin: 10px;
+    color: #1E88E5;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .read-more:hover {
+    text-decoration: underline;
+  }
+  
+  /* Progress Indicators */
+  .progress-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ddd;
+    transition: background-color 0.3s;
+  }
+  
+  .indicator.active {
+    background: #1E88E5;
+  }
+  
+  /* Controls */
+  .controls {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .controls button {
+    padding: 8px 16px;
+    background: #1E88E5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .controls button:hover {
+    background: #1565C0;
+  }
+
+
+  .overlay {
+    position: fixed;
+    height: 40vh;
+    bottom: -40vh; /* Start off-screen */
+    left: 0;
+    right: 0;
+    background-color: #ffffff7a;
+    backdrop-filter: blur(10px);
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: bottom 0.5s ease, opacity 0.5s ease; /* Transition effect for sliding and fading */
+    opacity: 0; /* Start with 0 opacity */
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+.overlay.show {
+    bottom: 0; /* Slide into view */
+    opacity: 1; /* Fade in */
+    pointer-events: auto; /* Allow interaction when shown */
+}
+
+.overlay-content {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+.close-button {
+    background-color: red;
+    padding: 5px;
+    border-radius: 20rem;
+    border: none;
+    color:#30334B;
+    font-size: 15px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: bolder;
+}
+
+.overlay-content h4 {
+    color:#007b5e;
+    font-size: 15px;
+}
+
+.overlay-content p{
+    font-size: 10px;
+    color: #007b5eb9;
+}
+
+.overlay-content em{
+    color: #007b5e;
+    font-size: 10px;
+    text-align: left;
+}
+
+.option {
+    margin: 20px 0;
+    cursor: pointer;
+    text-align: left;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 1rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.option:hover {
+    text-decoration: underline;
+}
+  
+  
+
+/* Bottom Navigation Menu */
+.bottom-nav {
+    background-color: #007b5e;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav .nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    list-style: none;
+}
+
+.bottom-nav .nav-links li {
+    text-align: center;
+    flex: 1;
+}
+
+.bottom-nav .nav-links li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.bottom-nav .nav-links li a img {
+    width: 29px;
+    height: 29px;
+    margin-bottom: 4px;
+    background-color: #ffffff00;
+}
+
+.bottom-nav .nav-links li a span {
+    font-size: 0.7rem;
+}

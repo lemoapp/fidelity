@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Investment deposit - Moniegram</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="  #1f1f1f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #1f1f1f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="./css/invest.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<main class="dashboard-main"></main>
+                <div class="head"><h3>DEPOSIT</h3></div>
+                    <div class="bitcoinaddress">
+                        <h4>PLEASE CONFIRM YOUR DEPOSIT</h4>
+                        <p>Please send payment to any of the addresses bellow</p>
+                        <p>Make sure to only send exact amount in the selected  currency</p>
+
+                        <p>Kindly note that your deposit will automatically be confirmed after 2 blockchain verifications</p><br>
+                      
+                        <div class="crypto-address">
+                          <p id="btc-address">Bitcoin Address: <br><span class="btc-address">bc1ql6ctq7ax5vsuxfqwlwg9yx0wss3jesq3npracd</span></p>
+                          <button class="confirm-button" onclick="copyToClipboard('btc-address')">Copy Bitcoin Address</button>
+                        </div><br>
+                        
+                        <div class="crypto-address">
+                          <p id="eth-address">USDT Address: <br><span class="btc-address">TJMfmpyNV4Gk6gPfhxf1TMyrXQYYepFReT</span></p>
+                          <button class="confirm-button" onclick="copyToClipboard('eth-address')">Copy USDT Address</button>
+                        </div><br>
+                        
+                        <div class="crypto-address">
+                          <p id="ltc-address">Ethereum Address: <br><span class="btc-address">0x4c172788B78BB1B42845db1bBf45B275Be29d35f</span></p>
+                          <button class="confirm-button" onclick="copyToClipboard('ltc-address')">Copy Ethereum Address</button>
+                        </div><br>
+
+                        <!-- <div class="crypto-address">
+                          <p id="teth-address">Litcoin Address: <br><span class="btc-address">LZAeh8BnqM8abFSNGDQiRvPoUEhGyBxrDN</span></p>
+                          <button class="confirm-button" onclick="copyToClipboard('teth-address')">Copy Ethereum Address</button>
+                        </div> -->
+                        
+                    </div>
+                <div class="container">
+                    <div class="header">
+                      <h3>Confirm Deposit</h3>
+                    </div>
+                    <div class="details">
+                      <h4>Plan Details</h4>
+                      <ul>
+                        <li>
+                          <span class="label">Plan Name:</span> <span id="plan-name" ></span>
+                        </li>
+                        <li>
+                          <span class="label">Profit:</span> <span id="plan-profit" ></span>
+                        </li>
+                        <li>
+                          <span class="label">Principle Return:</span> <span id="plan-principle-return" ></span>
+                        </li>
+                        <li>
+                          <span class="label">Credit Amount:</span> <span id="plan-credit-amount" ></span>
+                        </li>
+                        <li>
+                          <span class="label">Deposit Fee:</span> <span id="plan-deposit-fee" ></span>
+                        </li>
+                        <li>
+                          <span class="label">Debit Amount:</span> <span id="plan-debit-amount" ></span>
+                        </li>
+                        <li>
+                            <span class="label">Deposit Method:</span> <span id="deposit-method" ></span>
+                          </li>
+                      </ul>
+                    </div>
+                    <div class="actions">
+                      <button id="confirm-button" class="confirm-button">Confirm Deposit</button>
+                      <button id="cancel-button" class="cancel-button">Cancel</button>
+                    </div>
+                  </div>
+            </main><br>
+            <div id="spinner" class="spinner" style="display: none;"></div> <!-- Add this in your body -->
+
+            <div class="bottom-nav">
+    <div class="active">Invest</div>
+    <a href="main-page.html"><div>Portfolio</div></a>
+    <a href="withdrawal.html"><div>Deposit</div></a>
+  </div>
+
+
+<script>
+
+    function copyToClipboard(elementId) {
+      // Get the text from the span inside the p element
+      var copyText = document.querySelector(`#${elementId} span`).textContent;
+      
+      // Create a temporary textarea element
+      var tempInput = document.createElement("textarea");
+      tempInput.value = copyText;
+      document.body.appendChild(tempInput);
+      
+      // Select the text and execute the copy command
+      tempInput.select();
+      tempInput.setSelectionRange(0, 99999); // For mobile devices
+      
+      // Copy the text
+      document.execCommand("copy");
+      
+      // Remove the temporary element
+      document.body.removeChild(tempInput);
+      
+      // Optional: Alert the user that the text has been copied
+      alert("Copied the address: " + copyText);
+    }
+    
+    
+    
+    
+    // Define the planDetails object
+const planDetails = [
+    {
+        name: '20% RIO AFTER 24 HOURS',
+        profit: '20%',
+        principleReturn: 'Yes',
+        creditAmount: '',
+        depositFee: '0.00',
+        debitAmount: '',
+        period: '1 days',
+        minDeposit: 50,
+        maxDeposit: 999
+    },
+    {
+        name: '35% RIO AFTER 72 HOURS',
+        profit: '35%',
+        principleReturn: 'Yes',
+        creditAmount: '',
+        depositFee: '0.00',
+        debitAmount: '',
+        period: '3 days',
+        minDeposit: 1000,
+        maxDeposit: 4999
+    },
+    {
+        name: '50% RIO AFTER 1 WEEK',
+        profit: '50%',
+        principleReturn: 'Yes',
+        creditAmount: '',
+        depositFee: '0.00',
+        debitAmount: '',
+        period: '7 days',
+        minDeposit: 5000,
+        maxDeposit: 5000000
+    },
+    {
+        name: '100% RIO AFTER 14 DAYS',
+        profit: '100%',
+        principleReturn: 'Yes',
+        creditAmount: '',
+        depositFee: '0.00',
+        debitAmount: '',
+        period: '14 days',
+        minDeposit: 500,
+        maxDeposit: 5000000
+    },
+];
+
+function handleConfirmPage() {
+    // Get the plan, deposit method, and credit amount from the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const plan = urlParams.get('plan');
+    const depositMethod = urlParams.get('deposit-method');
+    const creditAmount = urlParams.get('credit-amount');
+
+    // Retrieve the plan details based on the selected plan
+    const planDetail = planDetails.find((p) => p.name === plan);
+
+    if (planDetail) {
+        // Calculate the debit amount
+        const debitAmount = parseFloat(creditAmount) + (parseFloat(creditAmount) * (parseFloat(planDetail.depositFee.replace('%', '')) / 100));
+
+        // Display the plan details
+        document.querySelector('#plan-name').innerHTML = planDetail.name;
+        document.querySelector('#plan-principle-return').innerHTML = planDetail.principleReturn;
+        document.querySelector('#plan-credit-amount').innerHTML = `$${creditAmount}`;
+        document.querySelector('#plan-deposit-fee').innerHTML = planDetail.depositFee;
+        document.querySelector('#plan-debit-amount').innerHTML = `$${debitAmount.toFixed(2)}`;
+        document.querySelector('#deposit-method').innerHTML = depositMethod;
+
+        // Add event listeners to the buttons
+        document.querySelector('#confirm-button').addEventListener('click', confirmDeposit);
+        document.querySelector('#cancel-button').addEventListener('click', cancelDeposit);
+    } else {
+        console.error(`Plan ${plan} not found`);
+    }
+}
+
+function confirmDeposit(e) {
+    e.preventDefault();
+    document.getElementById('spinner').style.display = 'block';
+    // Get the user's email from local storage
+    const email = localStorage.getItem('userEmail'); // Use the email key stored in local storage
+
+    // Get the plan details from the displayed elements
+    const planName = document.querySelector('#plan-name').innerHTML.replace('%', '').replace(/\s+/g, '_').replace(/_/g, '-');
+    const planPrincipleReturn = document.querySelector('#plan-principle-return').innerHTML;
+    const planCreditAmount = document.querySelector('#plan-credit-amount').innerHTML.replace('$', '');
+    const planDepositFee = document.querySelector('#plan-deposit-fee').innerHTML.replace('%', '');
+    const planDebitAmount = document.querySelector('#plan-debit-amount').innerHTML.replace('$', '');
+
+    // Get the deposit method
+    const depositMethod = document.querySelector('#deposit-method').innerHTML;
+
+    // Create the depositAmount from planDebitAmount
+    const depositAmount = parseFloat(planDebitAmount);
+
+    console.log('email:', email);
+    console.log('planName:', planName);
+    console.log('planPrincipleReturn:', planPrincipleReturn);
+    console.log('planCreditAmount:', planCreditAmount);
+    console.log('planDepositFee:', planDepositFee);
+    console.log('planDebitAmount:', planDebitAmount);
+    console.log('depositMethod:', depositMethod);
+    console.log('depositAmount:', depositAmount);
+
+    // Send the deposit details to the server for further processing
+    fetch('/api/deposit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email, // Use email instead of username
+            planName: planName,
+            planPrincipleReturn: planPrincipleReturn,
+            planCreditAmount: parseFloat(planCreditAmount),
+            planDepositFee: parseFloat(planDepositFee) / 100,
+            planDebitAmount: depositAmount,
+            depositMethod: depositMethod,
+            depositAmount: depositAmount
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('spinner').style.display = 'none';
+        if (data.success) {
+            console.log('Deposit successful!');
+            alert('The deposit has been saved. Your investment plan will resume and automatically be displayed on your ACTIVE DEPOSITS tab when admin confirms transaction on blockchain. Redirecting to the dashboard...');
+            window.location.href = 'main-page.html'; // Redirect to dashboard
+        } else {
+            console.log('Error:', data.error);
+        }
+    })
+    .catch(error => {
+      document.getElementById('spinner').style.display = 'none';
+        console.log('Error:', error);
+    });
+}
+
+// Function to cancel deposit
+function cancelDeposit(e) {
+    e.preventDefault();
+    window.location.href = 'main-page.html'; // Redirect to main page
+}
+
+// Initialize the confirm page handling when the document is loaded
+document.addEventListener('DOMContentLoaded', handleConfirmPage);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+<html > 
+    <head> <title>HYIP Manager Pro. Auto-payment, mass payment included.</title> <link href="images/adminstyle.css" rel="stylesheet" type="text/css">  <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> 
+<style> .pagination { display: -ms-flexbox; display: flex; padding-left: 0; list-style: none; } .page-link { position: relative; display: block; padding: 0.5rem 0.75rem; margin-left: -1px; line-height: 1.25; color: #000; background-color: #fff; border: 1px solid #999; } .page-item:first-child .page-link { margin-left: 0; border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem; } .page-item:last-child .page-link { border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem; } .page-link:hover { z-index: 2; color: #000; text-decoration: none; background-color: #ccc; border-color: #999; } .page-link.disabled { color: #999; } .page-link.disabled:hover { background-color: #fff; } .page-link { cursor: pointer; text-decoration: none; color: #000; } .page-item.active .page-link { z-index: 1; color: #000; background-color: #ccc; border-color: #999; } .page-item.disabled .page-link { color: #666; pointer-events: none; cursor: auto; background-color: #fff; border-color: #999; } .alert { padding: 5px 5px 5px 15px; margin: 2px; border: solid 1px black; display: block; } .alert.alert-danger { background: #FFEEEE; border-color: red; color: #660000; } .alert.alert-warning { background: #FFFFEE; border-color: yellow; color: #333300; } .alert.alert-success { background: #EEFFEE; border-color: green; color: #006600; } .alert.alert-info { background: #EEEEFF; border-color: blue; color: #000066; } table.form { width: 100%; } table.form th { width: 30%; padding: 3px; padding-right: 5px; text-align: right; background: #FFC982; color: #493011; } table.form th.title { width: 100%; padding-left: 5px; text-align: left; color: #a45c07; } table.form td { width: 70%; padding: 3px; text-align: left; background: #FEF5EA; } table.form.nosize td { width: auto; } table.form.nosize th { width: auto; } table.form thead th { width: auto; padding: 3px; text-align: center; background: #FFC982; color: #FFFFFF; } table.form thead td { width: auto; padding: 3px; text-align: left; } table.form td input[type=text], table.form td input[type=password], table.form td textarea, table.form td select { width: 100%; } table.form td input[type=text].nosize, table.form td input[type=password].nosize, table.form td textarea.nosize, table.form td select.nosize { width: auto; } table.form.controls td { background: transparent; width: auto; } table.form.controls td input[type=text], table.form.controls td input[type=password], table.form.controls td textarea, table.form.controls td select { margin: 3px; } table.list { width: 100%; } table.list td { width: auto; padding: 3px; } table.list.sub td { width: auto; padding: 1px; } table.list th { width: auto; padding: 3px; text-align: center; background: #FFC982; color: #493011; } table.list .row1 { background: #FCE7CA; } table.list .row2 { background: #FFF3E3; } form input[type=submit], form input[type=button], form button, .sbmt { display: inline-block; font-weight: bold; text-align: center; text-decoration: none; white-space: nowrap; vertical-align: middle; user-select: none; border: 1px solid transparent; padding: .25rem .5rem; line-height: 1.5; border-radius: .2rem; border: none; } form input[type=submit]:hover, form input[type=button]:hover, form button:hover, .sbmt:hover { background-color: #FAD252; } form input[type=submit]:active, form input[type=button]:active, form button:active, .sbmt:active { background-color: #FFC200; } form input[type=submit]:focus, form input[type=button]:focus, form button:focus, .sbmt:focus { box-shadow: 0 0 0 .2rem rgba(255,236,176,.5); } form input[type=submit]:disabled, form input[type=button]:disabled, form button:disabled, .sbmt:disabled { opacity: .65; } .btn { cursor:pointer; text-transform: uppercase; margin:1px; } .sbmt.btn-sm { font-size: .525rem; padding: .25rem .35rem; text-transform: uppercase; cursor:pointer; margin:1px; } .btn-success { color: #fff; background-color: #28a745; border-color: #28a745; } .btn-success:hover { background-color: #218838 !important; border-color: #1e7e34 !important; } .btn-success:focus { background-color: #218838 !important; box-shadow: 0 0 0 .2rem rgba(40,167,69,.5) !important; } .btn-danger { color: #fff; background-color: #dc3545; border-color: #dc3545; } .btn-danger:hover { background-color: #c82333 !important; border-color: #bd2130 !important; } .btn-danger:focus { background-color: #c82333 !important; box-shadow: 0 0 0 .2rem rgba(220,53,69,.5) !important; } .btn-info { color: #fff; background-color: #17a2b8; border-color: #17a2b8; } .btn-info:hover { background-color: #138496 !important; border-color: #117a8b !important; } .btn-info:focus { background-color: #138496 !important; box-shadow: 0 0 0 .2rem rgba(23,162,184,.5) !important; } .btn-primary { color: #fff; background-color: #007bff; border-color: #007bff; } .btn-primary:hover { background-color: #0069d9 !important; border-color: #0062cc !important; } .btn-primary:focus { background-color: #007bff !important; box-shadow: 0 0 0 .2rem rgba(38,143,255,.5) !important; } .badge { display: inline-block; padding: .25em .4em; font-size: 75%; font-weight: 700; line-height: 1; text-align: center; /*white-space: nowrap;*/ vertical-align: baseline; border-radius: .25rem; margin:.25em; } .badge-bg { display: inline-block; font-size: .525rem; padding: .25rem .35rem; text-transform: uppercase; font-weight: 700; text-align: center; /*white-space: nowrap;*/ vertical-align: baseline; border-radius: .25rem; } .badge-success { color: #fff; background-color: #28a745; } .badge-info { color: #fff; background-color: #17a2b8; } .badge-danger { color: #fff; background-color: #dc3545; } .badge-warning { color: #212529; background-color: #ffc107; } .badge-primary { color: #fff; background-color: #007bff; } .badge.sticker { font-size: 90%; } .hide { display:none; } .pshead { padding: 3px; background: #FF8D00; margin: 2px 0; font-weight: bold; overflow: hidden; } .pshead b { display:block; width: 250px; float: left; } .pshead a { float: right; } .psettings { display:none; } </style> <style> .nav { --display: flex; --flex-wrap: wrap; padding: 0 .25rem; margin-bottom: 0; list-style: none; } .nav-link { border-radius: .25rem; border-bottom-right-radius: 0; border-bottom-left-radius: 0; display: block; padding: .5rem 1rem; color: #493011; text-decoration: none; background-color: #FCE7CA; border: solid 1px transparent; -webkit-text-decoration-skip: objects; margin-top: 0.2rem; text-align: left; font-weight: bold; } .nav-link:last-child { border-bottom-right-radius: 0.25rem; border-bottom-left-radius: 0.25rem; margin-bottom: 0.2rem; } a.nav-link:hover { background-color: #FFC982; } a.nav-link.active { background-color: #FFC982; } a.nav-link:active, a.nav-link:focus { background-color: #FCE7CA } .dropdown-toggle.show { border-bottom-right-radius: 0; border-bottom-left-radius: 0; } .dropdown-toggle::after { --display: inline-block; display: none; width: 0; height: 0; margin-left: .255em; vertical-align: .255em; content: ""; border-top: .3em solid; border-right: .3em solid transparent; border-bottom: 0; border-left: .3em solid transparent; z-index: 1000; } .dropdown-menu { --position: absolute; --top: 100%; left: 0; z-index: 1000; --display: none; --float: left; --min-width: 10rem; padding: .5rem 0; margin: 0 0 .125rem 0; --font-size: 1rem; color: #212529; text-align: left; list-style: none; background-color: #fff; background-clip: padding-box; border: 1px solid #FCE7CA; border-top: 0; border-bottom-right-radius: .25rem; border-bottom-left-radius: .25rem; } .dropdown-menu.show { display: block; } .dropdown-item { display: block; --width: 100%; padding: .25rem 1rem; clear: both; font-weight: 400; color: #212529; text-align: inherit; --white-space: nowrap; background-color: transparent; border: 0; text-decoration: none; } .dropdown-item:hover { background-color: #FCE7CA; } .dropdown-item.active { background-color: #FFC982; } .dropdown-item:active, .dropdown-item:focus { background-color: #FCE7CA; } a.sort_link { cursor: pointer; color: #606060; } a.sort_link.active { color: red; } a.link.username { text-decoration: none; font-weight: bold; } b.username { font-size:1.2em; } .hlp.badge { color:#fff; font-size: 100%; } .hlp { --font-size: auto; color: black; text-decoration: none; cursor: help; position: relative; display: inline-block; } .hlp[title]:after, .hlp[data-hlp]:after { opacity: 0; content: attr(title); position: absolute; top: 100%; left: 0; color: #fff; transition: opacity 0.3s; border-radius: 6px; background-color: #555; padding: 5px 5px; width: 220px; display: none; font-size: 90%; z-index: 1000; text-align: left; white-space: pre-wrap; } .hlp[data-hlp]:after { content: attr(data-hlp); white-space: pre-wrap; } .hlp[title]:hover:after, .hlp[data-hlp]:hover:after { opacity: 1; display: inline-block; } </style>
+</head> 
+<body bgcolor="#FFFFF2" link="#666699" vlink="#666699" alink="#666699" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">  <center> <table width="1280" border="0" cellpadding="0" cellspacing="0" > <tr> <td valign=top> <table cellspacing=0 cellpadding=0 border=0 width=100%> <tr> <td background="images/ver.gif" bgcolor=#FF8D00><img src="images/top.gif" border="0" align=left></td> <td background="images/ver.gif" bgcolor=#FF8D00 valign=bottom align=right> <span style="font-family: verdana; font-size: 12px; color: white"> <b> 
+ <div id="google_translate_element"></div> <a href="admindash.html">Home</a> &middot;  <a href="login.html" class=toplink>Logout</a></b></span>&nbsp; &nbsp; </td> </tr> </table> </td> </tr> <tr> <td valign=top> <table cellspacing=0 cellpadding=1 border=0 width=100% bgcolor=#ff8d00> <tr> <td> <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0"> <tr bgcolor="#FFFFFF" valign="top">  <td width="500" align=center>  <ul class="nav" style="width:220px">   <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Plans</div> <div class="dropdown-menu">  <a class="dropdown-item" href="expiring.html"><i class="fa fa-hourglass-end"></i> Expiring Deposits</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Users</div> <div class="dropdown-menu">  <a class="dropdown-item" href="users.html"><i class="fa fa-user"></i> Users</a>     <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Transactions</div> <div class="dropdown-menu">  <a class="dropdown-item" href="transaction.html"><i class="fa fa-book"></i> Transactions</a>   <a href="pending-withdrawal.html" class="dropdown-item"><i class="fa fa-hand-paper-o"></i> Withdrawal Requests</a>  <a class="dropdown-item" href="user.html"><i class="fa fa-list"></i> Add Funds</a>  <a class="dropdown-item" href="deposits.html"><i class="fa fa-list"></i> Deposits</a>  <a class="dropdown-item" href="all-withdrawals.html"><i class="fa fa-list"></i> Withdrawals</a>  <a class="dropdown-item" href="pending-deposit.html"><i class="fa fa-compress"></i> Pending Deposits <span class="badge sticker badge-success">
+</span></a>  <a class="dropdown-item" href="user.html"><i class="fa fa-plus-circle"></i> Add Bonus</a>  </div> </li>      <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Utils</div> <div class="dropdown-menu">   <a class="dropdown-item" href="newsletter.html"><i class="fa fa-forward"></i> Send a Newsletter</a>  <a class="dropdown-item" href="?a=custompages"><i class="fa fa-file-image-o"></i> Custom Pages</a>  <a class="dropdown-item" href="?a=seo_links"><i class="fa fa-random"></i> Links Replacement</a>  <a class="dropdown-item" href="newsletter.html"><i class="fa fa-newspaper-o"></i> News</a>  <a class="dropdown-item" href="?a=user_notices"><i class="fa fa-comment-o"></i> User Notices</a>  <a class="dropdown-item" href="?a=maintenance_page"><i class="fa fa-exclamation-triangle"></i> Maintenance Page</a>  <a class="dropdown-item" href="?a=tell_friend"><i class="fa fa-paper-plane-o"></i> Tell A Friend</a>  </div> </li>    <li class="nav-item"> <a class="nav-link" href="login.html">Logout</a> </li> </ul>  </td> <td bgcolor="#ff8d00" valign="top" width=1><img src=images/q.gif width=1 height=1></td>  <td bgcolor="#FFFFFF" valign="top" width=99%> <!-- Main: Start --> 
+ <table width="100%" height="100%" border="0" cellpadding="10" cellspacing="0" class="forTexts"> <tr> <td width=100% height=100% valign=top>   <style> .itm { width: 80px; border: solid 1px #FFC982; text-align: center; display: inline-block; height: 80px; margin: 2px; padding: 5px; border-radius: 5px; text-decoration: none; color: black; overflow:hidden; position: relative; } .itm:hover { background: #FCE7CA; color: #a45c07; } .itm i { display: block; padding: 10px; font-size: 20px; color: #a45c07; } .itm .badge { position: absolute; top: 0; right: 0; } </style>   <div class="cat">  </div>   <h3>Plans</h3> <div class="cat">  <a class="itm" href="expiring.html"> <i class="fa fa-hourglass-end"></i> <span>Expiring Deposits</span>  </a>  </div>  <h3>Users</h3> <div class="cat">  <a class="itm" href="users.html"> <i class="fa fa-user"></i> <span>Users</span>  </a> </div>  <h3>Transactions</h3> <div class="cat">  <a class="itm" href="transaction.html"> <i class="fa fa-book"></i> <span>Transactions</span>  </a>  <a class="itm" href="pending-withdrawal.html"> <i class="fa fa-hand-paper-o"></i> <span>Withdrawal Requests</span> <br> </a>  <a class="itm" href="user.html"> <i class="fa fa-list"></i> <span>Add Funds</span>  </a>  <a class="itm" href="deposits.html"> <i class="fa fa-list"></i> <span>Deposits</span>  </a>  <a class="itm" href="all-withdrawals.html"> <i class="fa fa-list"></i> <span>Withdrawals</span>  </a> <a class="itm" href="pending-deposit.html"> <i class="fa fa-compress"></i> <span>Pending Deposits</span> <br> </a>  <a class="itm" href="user.html"> <i class="fa fa-plus-circle"></i> <span>Add Bonus</span>  </a>  </div>  <h3>Utils</h3> <div class="cat">  <a class="itm" href="newsletter.html"> <i class="fa fa-forward"></i> <span>Send a Newsletter</span>  </a>  <a class="itm" href="?a=custompages"> <i class="fa fa-file-image-o"></i> <span>Custom Pages</span>  </a>  <a class="itm" href="?a=seo_links"> <i class="fa fa-random"></i> <span>Links Replacement</span>  </a>  <a class="itm" href="newsletter.html"> <i class="fa fa-newspaper-o"></i> <span>News</span>  </a>  <a class="itm" href="?a=user_notices"> <i class="fa fa-comment-o"></i> <span>User Notices</span>  </a>  <a class="itm" href="?a=maintenance_page"> <i class="fa fa-exclamation-triangle"></i> <span>Maintenance Page</span>  </a>  <a class="itm" href="?a=tell_friend"> <i class="fa fa-paper-plane-o"></i> <span>Tell A Friend</span>  </a>  </div>   </td> </tr> </table> <!-- Main: END --> 
+ </td> </tr> </table> </td> </tr> </table> </td> </tr> </table> </center>
+
+
+
+
+
+
+
+
+
+ <script>
+
+//     // Fetch pending deposits count
+//     document.addEventListener("DOMContentLoaded", () => {
+//       fetch('/api/pending-withdrawals-count')
+//           .then(response => response.json())
+//           .then(data => {
+//               // Update the count of pending withdrawals
+//               document.getElementById('pendingWithdrawalsCount').innerText = `${data.count}`;
+//           })
+//           .catch(error => console.error('Error fetching pending withdrawals count:', error));
+//   });
+  
+//   // Redirect to pending-withdrawals.html
+//   function viewPendingWithdrawals() {
+//       window.location.href = '/pending-withdrawals.html';
+//   }
+  
+  
+window.onload = function() {
+    fetch('/api/admin/pending-deposits/count')
+        .then(response => response.json())
+        .then(data => {
+            const countElement = document.getElementById("pendingDepositsCount");
+            if (countElement) {
+                countElement.textContent = data.count;
+            } else {
+                console.error('Element with id "pendingDepositsCount" not found');
+            }
+        })
+        .catch(error => console.error('Error fetching pending deposits count:', error));
+};
+
+  
+   
+    //   document.addEventListener('DOMContentLoaded', function() {
+    //       fetch('/api/admin/total-users')
+    //           .then(response => response.json())
+    //           .then(data => {
+    //               document.getElementById('totalUsersCount').textContent = data.total_users;
+    //           })
+    //           .catch(error => console.error('Error fetching total users:', error));
+    //   });
+  
+  
+  
+  
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body> </html> <!--Page generated 0.0356 sec. -->
+<!--Memory: 22 M. -->
+
+
+

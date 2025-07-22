@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin: 0;
+    background: linear-gradient(120deg, #2a2d30, #00afa0);
+    color: white;
+}
+
+.claim-container {
+    max-width: 600px;
+    margin: 50px auto;
+    margin-top: 200px;
+    padding: 20px;
+    background: white;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+header h4 {
+    font-size: 14px;
+    margin: 0;
+}
+
+header p {
+    font-size: 12px;
+    margin: 10px 0 20px;
+}
+
+/* Reward Animation */
+.reward-animation {
+    margin: 20px 0;
+}
+
+.reward-animation h2 {
+    font-size: 1.8rem;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Countdown Timer */
+.countdown-timer {
+    margin: 20px 0;
+}
+
+.countdown-timer h2 {
+    font-size: 2rem;
+    color: #e53935;
+}
+
+/* Claim Button */
+.claim-button-container {
+    margin: 20px 0;
+}
+
+.claimButton {
+    background: #1e88e5;
+    width: 40%;
+    padding: 0.8rem;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.claimButton:hover {
+    background: #1565c0;
+    transform: scale(1.05);
+}
+
+/* Progress Tracker */
+.progress-tracker {
+    margin: 30px 0;
+    display: none;
+}
+
+.progress-bar {
+    width: 100%;
+    background: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #49af00;
+    width: 0%;
+    transition: width 0.5s ease;
+}

@@ -1,0 +1,340 @@
+*{
+    padding: 0;
+    z-index: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+  .poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+  
+  .poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #007b5e23;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode .setting-item {
+    /* Apply dark theme styles to the settings section too */
+    background-color: #333;
+    color: white;
+}
+
+
+/* App Header */
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #007b5e;
+    color: white;
+}
+
+.back-button a{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+}
+
+.page-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.notification-icon {
+    position: relative;
+}
+
+.notification-icon img{
+    width: 1.5rem;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    line-height: 18px;
+}
+
+/* Profile Section */
+.profile-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-img {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.profile-img img {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+}
+
+.camera-icon {
+    position: absolute;
+    top: 15px;
+    right: 3px;
+}
+
+.camera-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+p{
+    color: #007b5eb9;
+    font-size: 10px;
+    margin-bottom: 10px;
+    margin-top: 25px;
+}
+
+/* Settings Section */
+.settings-section {
+    margin: 20px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.setting-label {
+    font-size: 15px;
+}
+
+.setting-description {
+    font-size: 14px;
+    color: #777;
+}
+
+.setting-action {
+    font-size: 16px;
+    color: #007b5e;
+    text-decoration: none;
+}
+
+.setting-action:hover {
+    text-decoration: underline;
+}
+
+/* Switch Styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #007b5e;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+
+/* Modal container - hidden by default */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* Center the modal */
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%; /* Responsive width */
+    max-width: 500px; /* Limit the max width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2{
+    font-size: 14px;
+}
+
+.modal-content form input{
+    width: 95%;
+    margin-top: 1rem;
+}
+
+
+.modal-content form input:focus {
+    border-color: #F5F100;
+    outline: none;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.modal-content form button{
+    width: 100%;
+    background-color: #007b5e;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+    
+.modal-content form button:hover {
+    background-color: #606693;
+}
+
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+/* Bottom Navigation Menu */
+.bottom-nav {
+    background-color: #007b5e;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav .nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    list-style: none;
+}
+
+.bottom-nav .nav-links li {
+    text-align: center;
+    flex: 1;
+}
+
+.bottom-nav .nav-links li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.bottom-nav .nav-links li a img {
+    width: 29px;
+    height: 29px;
+    margin-bottom: 4px;
+    background-color: #ffffff00;
+}
+
+.bottom-nav .nav-links li a span {
+    font-size: 10px;
+}

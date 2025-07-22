@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="  #1f1f1f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #1f1f1f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Main Page - Biggycapital</title>
+    <link rel="stylesheet" href="./css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Jacquarda+Bastarda+9&family=Poppins:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+
+    
+</head>
+<body>
+
+
+
+
+<main class="dashboard-main">
+    <h2>My Profile</h2>
+    <!-- Profile Picture and Details -->
+    <div class="profile-container">
+        <div class="profile-picture">
+            <img id="profile-img" src="./images/user_9303328.png" alt="Profile Picture">
+            <input type="file" id="profile-pic-upload" accept="image/*" style="display: none;">
+            <button id="upload-btn">Change Profile Picture</button>
+        </div>
+
+        <div class="profile-details">
+            <h3>Profile Information</h3>
+            <form id="profile-form" class="update-form">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName">
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone">
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address">
+
+                <label for="email">Email (Read-only):</label>
+                <input type="text" id="email" name="email" readonly>
+                
+                <h3>Change Password (Optional)</h3>
+                <label for="current_password">Current Password:</label>
+                <input type="password" id="current_password" name="current_password">
+                
+                <label for="new_password">New Password:</label>
+                <input type="password" id="new_password" name="new_password">
+                
+                <label for="confirm_password">Confirm New Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password">
+                
+                <button type="submit">Update Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="message" style="color: red; font-size: 13px;"></div>
+</main><br><br><br><br><br><br><br>
+
+<nav class="bottom-nav">
+    <ul class="nav-links">
+        <li><a href="main-page.html"><img src="./images/Home Page.png"><span>Home</span></a></li>
+        <li><a href="chatbot.html"><img src="./images/Chat.png" alt="Services Icon" style=" border-radius: 20rem;"><span>Chat</span></a></li>
+        <li><a href="wallet.html"><img src="./images/Wallet.png" alt="About Icon" style="border-radius: 20rem;"><span>Wallet</span></a></li>
+        <li><a href="profile.html"><img src="./images/Male User.png" alt="About Icon" style="border-radius: 20rem;"><span>Profile</span></a></li>
+        <li><a href="assets.html"><img src="./images/Crypto Trading Options.png" alt="Contact Icon"><span>Assets</span></a></li>
+    </ul>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const userEmail = localStorage.getItem('userEmail');
+    console.log('User email:', userEmail);  // Debugging userEmail
+
+    if (!userEmail) {
+        document.getElementById('message').innerText = "No user logged in.";
+        return;
+    }
+
+    fetch(`/get-user-profile?email=${userEmail}`)
+        .then(response => {
+            console.log('Response status:', response.status);  // Check response status
+            return response.json();
+        })
+        .then(data => {
+            console.log('Profile data:', data);  // Debugging data received
+            if (data.success) {
+                document.getElementById('fullName').value = data.fullName;
+                document.getElementById('phone').value = data.phone;
+                document.getElementById('address').value = data.address;
+                document.getElementById('email').value = data.email;
+                document.getElementById('profile-img').src = data.profile_image || 'default-avatar.png';
+            } else {
+                document.getElementById('message').innerText = "Failed to load profile.";
+            }
+        })
+        .catch(err => {
+            console.error('Error fetching profile:', err);  // Log the error in the console
+            document.getElementById('message').innerText = "Error loading profile.";
+        });
+
+
+
+    // Handle profile update form submission
+    document.getElementById('profile-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        formData.append('email', userEmail);
+
+        fetch('/update-profile', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('message').innerText = data.message;
+        })
+        .catch(err => {
+            console.error('Error:', err);
+            document.getElementById('message').innerText = "Error updating profile.";
+        });
+    });
+
+    // Handle profile picture upload
+    document.getElementById('upload-btn').addEventListener('click', function() {
+        document.getElementById('profile-pic-upload').click();
+    });
+
+    document.getElementById('profile-pic-upload').addEventListener('change', function() {
+        const file = this.files[0];
+        const formData = new FormData();
+        formData.append('profile_image', file);
+        formData.append('email', userEmail);
+
+        fetch('/update-profile-picture', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('profile-img').src = data.profile_image_url;
+            }
+            document.getElementById('message').innerText = data.message;
+        })
+        .catch(err => {
+            console.error('Error:', err);
+            document.getElementById('message').innerText = "Error updating profile picture.";
+        });
+    });
+});
+
+</script>
+</body>
+</html>

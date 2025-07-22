@@ -1,0 +1,98 @@
+*{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+  .poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+  
+  .poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+body, html {
+    margin: 0;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/images/Frame 118.png') no-repeat center center;
+    background-size: cover;
+    font-family: "Poppins", sans-serif;
+}
+
+
+.spinner {
+    display: none;
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 8px solid rgb(0, 23, 128);
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* Center the spinner */
+.spinner {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+h2{
+    color: rgb(255, 255, 255);
+    margin-bottom: 16px;
+}
+
+form input{
+    width: 90%;
+    background-color: rgba(42, 46, 255, 0.192);
+    margin-bottom: 19px;
+    color: white;
+}
+
+.form-section
+{
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+}
+
+label{
+    display: flex;
+    color: white;
+    gap: 1rem;
+    font-size: 12px;
+}
+
+label input{
+    width: 12px;
+    
+}
+
+.logo{
+    margin-top: -2rem;
+    
+}
+
+.logo img{
+    width: 30%;
+}
+

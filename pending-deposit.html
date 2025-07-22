@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Moniegram Dashboard</title>
+    <meta name="theme-color" content=" #3e059b">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Your Website">
+    <meta name="apple-mobile-web-app-status-bar-style" content=" #3e059b">
+    <link rel="stylesheet" href="./css/admindash.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,100&display=swap" rel="stylesheet">
+</head>
+</head>
+<body>
+
+  <div class="body">
+    <div class="menu">
+      <center> <table width="1280" border="0" cellpadding="0" cellspacing="0" > <tr> <td valign=top> <table cellspacing=0 cellpadding=0 border=0 width=100%> <tr> <td background="images/ver.gif" bgcolor=#FF8D00><img src="images/top.gif" border="0" align=left></td> <td background="images/ver.gif" bgcolor=#FF8D00 valign=bottom align=right> <span style="font-family: verdana; font-size: 12px; color: white"> <b> 
+        <div id="google_translate_element"></div> <a href="admindash.html" class=toplink>Home</a> &middot;  <a href="signin.html" class=toplink>Logout</a></b></span>&nbsp; &nbsp; </td> </tr> </table> </td> </tr> <tr> <td valign=top> <table cellspacing=0 cellpadding=1 border=0 width=100% bgcolor=#ff8d00> <tr> <td> <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0"> <tr bgcolor="#FFFFFF" valign="top">  <td width="500" align=center>  <ul class="nav" style="width:220px">   <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Plans</div> <div class="dropdown-menu">  <a class="dropdown-item" href="?a=programs"><i class="fa fa-signal"></i> Investment Programs</a>  <a class="dropdown-item" href="?a=expiring_deposits"><i class="fa fa-hourglass-end"></i> Expiring Deposits</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Users </div> <div class="dropdown-menu">  <a onclick="window.location.href='users.html'" class="dropdown-item" ><i class="fa fa-user"></i> Users <span class="badge sticker badge-success"><span id="totalUsersCount">0</span></span></a>  <a class="dropdown-item" href="?a=ext_accounts_blacklist"><i class="fa fa-times-circle"></i> Accounts Blacklist</a>  <a class="dropdown-item" href="?a=top_referral_earnings"><i class="fa fa-trophy"></i> Top Referral Earnings</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Transactions</div> <div class="dropdown-menu">  <a class="dropdown-item" href="?a=transactions"><i class="fa fa-book"></i> Transactions</a>  <a class="dropdown-item" onclick="viewPendingWithdrawals()"><i class="fa fa-hand-paper-o"></i> Withdrawal Requests</a>  <a class="dropdown-item" href="?a=transactions&ttype=add_funds"><i class="fa fa-list"></i> Add Funds</a>    <a class="dropdown-item" href="/pending-deposit"><i class="fa fa-compress"></i> Pending Deposits <span class="badge sticker badge-success"></span></a>  <a class="dropdown-item" href="?a=add_transactions"><i class="fa fa-plus-circle"></i> Add Bonus</a>  </div> </li>    </li>    <li class="nav-item"> <a class="nav-link" href="signin.html">Logout</a> </li> </ul>  </td> <td bgcolor="#ff8d00" valign="top" width=1><img src=images/q.gif width=1 height=1></td>  <td bgcolor="#FFFFFF" valign="top" width=99%>
+
+    </div>
+    <h2>Pending Deposits</h2>
+
+  <table id="pending-deposits-table">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>User ID</td>
+        <td>Amount</td>
+        <td>Status</td>
+        <td>Date</td>
+        <td>Actions</td> <!-- New column for actions -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows will be inserted here -->
+    </tbody>
+  </table>
+  </div>
+  
+  <script>
+// Fetch and display pending deposits
+fetch('/api/admin/pending-deposits')
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((deposits) => {
+    const tableBody = document.querySelector('#pending-deposits-table tbody');
+    deposits.forEach((deposit) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${deposit.id}</td>
+        <td>${deposit.email}</td>
+        <td>$${deposit.amount}</td>
+        <td>${deposit.plan_name || 'N/A'}</td> <!-- Default to 'N/A' if plan_name is missing -->
+        <td>${deposit.status}</td>
+        <td>${new Date(deposit.date).toLocaleString()}</td>
+        <td>
+          <button onclick="handleAction(${deposit.id}, 'approve')" 
+                  style="background-color: #4CAF50; color: white; padding: 7px;">Approve</button>
+          <button onclick="handleAction(${deposit.id}, 'reject')" 
+                  style="background-color: red; color: white; padding: 7px;">Reject</button>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+  })
+  .catch((error) => console.error('Error fetching pending deposits:', error));
+
+
+
+  function handleAction(depositId, action) {
+    console.log(`Action triggered: ${action} on Deposit ID: ${depositId}`);
+    if (action === 'approve') {
+        approveDeposit(depositId);
+    }
+    else if (action === 'reject') {
+      rejectDeposit(depositId);
+    }
+}
+
+function approveDeposit(depositId) {
+    fetch(`/api/admin/pending-deposits/approve/${depositId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            alert(data.message);
+            location.reload();
+        })
+        .catch((error) => console.error('Error:', error));
+}
+
+// Function to reject the deposit by calling the backend API
+function rejectDeposit(depositId) {
+    fetch('/api/admin/reject-deposit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ depositId }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        alert(data.message);
+        location.reload(); // Reload the page to show updated status
+    })
+    .catch((error) => console.error('Error rejecting deposit:', error));
+}
+
+
+  </script>
+
+</body>
+</html>

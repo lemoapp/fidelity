@@ -25,7 +25,7 @@
               <main class="dashboard-main">
                 <div class="tabs">
                   <div class="tab1">
-                    <div class="tab" data-plan="plan-1" data-index="0" style=" background: linear-gradient(to right, rgb(255, 255, 255), rgb(218, 218, 218), rgba(2, 29, 182, 0.13));"> 
+                    <div class="tab" data-plan="plan-1" data-index="0" style=" background: linear-gradient(to right, rgb(255, 255, 255), rgb(218, 218, 218), rgba(2, 182, 149, 0.13));"> 
                       <input type="radio" name="plan" id="plan-1-radio" value="plan-1">
                       <h2>20% RIO AFTER 24 HOURS</h2>
                       <P class="range">$50 - $999
@@ -38,7 +38,7 @@
                       
                       <!-- <button>Calculate</button>                        -->
                     </div>
-                    <div class="tab" data-plan="plan-2" data-index="1" style=" background: linear-gradient(to right, rgba(2, 29, 182, 0.13), rgb(218, 218, 218), rgb(245, 244, 243));">
+                    <div class="tab" data-plan="plan-2" data-index="1" style=" background: linear-gradient(to right, rgba(2, 182, 149, 0.13), rgb(218, 218, 218), rgb(245, 244, 243));">
                       <input type="radio" name="plan" id="plan-2-radio" value="plan-2" >
                       <h2>35% RIO 72 HOURS</h2>
                       <P class="range">$1000 - $4999</P> 
@@ -51,7 +51,7 @@
                     </div>
                   </div>
                   <div class="tab1">
-                    <div class="tab" data-plan="plan-3" data-index="2" style=" background: linear-gradient(to right, rgb(255, 255, 255), rgb(218, 218, 218), rgba(2, 29, 182, 0.13))">
+                    <div class="tab" data-plan="plan-3" data-index="2" style=" background: linear-gradient(to right, rgb(255, 255, 255), rgb(218, 218, 218), rgba(2, 182, 149, 0.13))">
                       <input type="radio" name="plan" id="plan-3-radio" value="plan-3">
                       <h2>50% RIO LONG TERM</h2>
                       <P class="range">$5000 - Unlimited</P>
@@ -86,36 +86,21 @@
                         </label>
                         <div id="extra-radio"></div>
                       </div>
-                      <button id="deposit button" class="spend button" style="background: linear-gradient(to right, rgb(0, 131, 50), rgb(88, 250, 169), rgb(0, 133, 51)); color: rgb(0, 0, 0); font-size: 13px; font-weight: bold; width: 50%; padding: 0.6rem; border-style: none; border-radius: 20rem;">Deposit</button>
+                      <button id="deposit button" class="spend button" style="background: linear-gradient(to right, rgb(0, 131, 50), rgb(65, 185, 125), rgb(0, 133, 51)); color: rgb(0, 0, 0); font-size: 13px; font-weight: bold; width: 50%; padding: 0.6rem; border-style: none; border-radius: 20rem;">Deposit</button>
                       <div id="deposit-error" style="color: red;"></div>
                     </div>
                 </form>
               </main>
         </div><br><br><br><br><br><br><br>
 
-        <nav class="bottom-nav">
-          <ul class="nav-links">
-              <li><a href="main-page.html"><img src="./images/Home Page.png"><span>Home</span></a></li>
-              <li><a href="chatbot.html"><img src="./images/Chat.png" alt="Services Icon" style=" border-radius: 20rem;"><span>Chat</span></a></li>
-              <li><a href="wallet.html"><img src="./images/Wallet.png" alt="About Icon" style="border-radius: 20rem;"><span>Wallet</span></a></li>
-              <li><a href="profile.html"><img src="./images/Male User.png" alt="About Icon" style="border-radius: 20rem;"><span>Profile</span></a></li>
-              <li><a href="assets.html"><img src="./images/Crypto Trading Options.png" alt="Contact Icon"><span>Assets</span></a></li>
-          </ul>
-      </nav>
+        <div class="bottom-nav">
+    <div class="active">Assets</div>
+    <a href="main-page.html"><div>Portfolio</div></a>
+    <a href="withdrawal.html"><div>Withdraw</div></a>
+  </div>
       
 
-<!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-    var _smartsupp = _smartsupp || {};
-    _smartsupp.key = 'ca4f2523f798b867912554a1fae0aa0221f03573';
-    window.smartsupp||(function(d) {
-      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-      c.type='text/javascript';c.charset='utf-8';c.async=true;
-      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-    })(document);
-    </script>
-    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+
      <script src="java.js"></script>
      <script>
       // Add an event listener to the window load event
