@@ -306,6 +306,46 @@ app.get('/api/getBalance', async (req, res) => {
 });
 
 
+app.get('/api/user/history', async (req, res) => {
+  try {
+    const { email } = req.query;
+    if (!email) return res.status(400).json({ error: "Missing email" });
+
+    console.log("Fetching deposit history for:", email);
+
+    // Adjust this based on your actual DB method
+    const history = await db.query(
+      'SELECT amount, date FROM deposits WHERE email = ? ORDER BY date ASC',
+      [email]
+    );
+
+    res.json({ history }); // 👈 match expected frontend format
+  } catch (error) {
+    console.error("Error fetching user history:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+
+
+// GET /api/user/transactions
+app.get('/api/user/transactions', async (req, res) => {
+  const { email } = req.query;
+  if (!email) return res.status(400).json({ error: 'Email required' });
+
+  try {
+    const recent = await db.collection('transactions')
+      .find({ email }).sort({ date: -1 }).limit(5).toArray();
+    
+    res.json(recent);
+  } catch (err) {
+    res.status(500).json({ error: 'DB error fetching transactions' });
+  }
+});
+
+
+
+
 app.post('/api/create-payment-intent', async (req, res) => {
     const { amount } = req.body; // Get amount from request
 
