@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f1f1f">
+    <link rel="stylesheet" href="./css/forms.css">
+    <title>Waiting - Moniegram</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1f1f1f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.161);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .spinner {
+            border: 8px solid rgba(255, 255, 255, 0.1);
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: rgb(248, 166, 50);
+        }
+
+        p {
+            font-size: 16px;
+            color: white;
+        }
+
+        .redirect-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: rgb(248, 166, 50);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <h1>Waiting...</h1>
+        <div class="message">
+            <p>Please check your email to verify your account.</p>
+            <p id="statusMessage"></p>
+        </div>
+        <!-- <p>If you are not redirected automatically, <a class="redirect-link" href="/">click here</a> to return to the homepage.</p> -->
+    </div>
+
+    <script>
+        // Replace with your actual token
+        const token = 'YOUR_TOKEN_HERE'; 
+        const checkVerificationStatus = async () => {
+            try {
+                const response = await fetch(`/api/verify/${token}`);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('statusMessage').innerText = data.message;
+                    // Redirect to login page after a few seconds
+                    setTimeout(() => {
+                        window.location.href = '/login.html'; // Update with your actual login page URL
+                    }, 3000);
+                } else {
+                    const errorData = await response.json();
+                    document.getElementById('statusMessage').innerText = errorData.message;
+                }
+            } catch (error) {
+                document.getElementById('statusMessage').innerText = 'An error occurred while checking verification status.';
+            }
+        };
+
+        // Call the function to check verification status
+        checkVerificationStatus();
+    </script>
+</body>
+</html>

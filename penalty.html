@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Penalty</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="./css/admindash.css">
+</head>
+<body>
+    <h2>Add Penalty for User</h2>
+
+    <form id="penaltyForm">
+        <p><strong>User:</strong> <span id="userName"></span></p>
+
+        <label for="currency">Currency:</label>
+        <input type="text" id="currency" name="currency" value="Bitcoin" readonly><br>
+
+        <label for="penaltyAmount">Penalty Amount:</label>
+        <input type="number" id="penaltyAmount" name="penaltyAmount" required><br>
+
+        <label for="penaltyType">Penalty Type:</label>
+        <select id="penaltyType" name="penaltyType" required>
+            <option value="">Select Penalty Type</option>
+            <option value="late_payment">Late Payment</option>
+            <option value="policy_violation">Policy Violation</option>
+            <option value="others">Others</option>
+        </select><br>
+
+        <label for="description">Reason for Penalty:</label>
+        <textarea id="description" name="description" required></textarea><br>
+
+        <label for="authPassword">Enter Admin Password:</label>
+        <input type="password" id="authPassword" name="authPassword" required><br>
+
+        <button type="submit">Submit Penalty</button>
+    </form>
+
+    <script>
+        // Fetch user details on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const userId = new URLSearchParams(window.location.search).get('userId');
+            if (userId) {
+                fetch(`/api/admin/user-details?userId=${userId}`)
+                    .then(response => response.json())
+                    .then(user => {
+                        document.getElementById('userName').textContent = user.username;
+                    })
+                    .catch(error => console.error('Error fetching user details:', error));
+            } else {
+                console.error('User ID not found in URL');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+
+            if (email) {
+                fetch(`/api/admin/user-details?email=${encodeURIComponent(email)}`)
+                    .then(response => response.json())
+                    .then(user => {
+                        document.getElementById('userName').textContent = user.full_name;
+                    })
+                    .catch(error => console.error('Error fetching user details:', error));
+            } else {
+                console.error('Email not provided in the URL');
+            }
+
+            document.getElementById('penaltyForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const penaltyData = {
+                    email: email,
+                    penaltyAmount: parseFloat(document.getElementById('penaltyAmount').value),
+                    penaltyType: document.getElementById('penaltyType').value,
+                    description: document.getElementById('description').value,
+                    authPassword: document.getElementById('authPassword').value
+                };
+
+                fetch('/api/admin/add-penalty', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(penaltyData)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('Penalty added successfully');
+                        window.location.href = '/user'; // Redirect to users page
+                    } else {
+                        alert(result.message || 'Error adding penalty');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error submitting penalty:', error);
+                    alert('There was an error processing the request');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

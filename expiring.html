@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/admindash.css">
+    <title>Expiring Deposits</title>
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+
+    <div class="menu">
+        <center> <table width="1280" border="0" cellpadding="0" cellspacing="0" > <tr> <td valign=top> <table cellspacing=0 cellpadding=0 border=0 width=100%> <tr> <td background="images/ver.gif" bgcolor=#FF8D00><img src="images/top.gif" border="0" align=left></td> <td background="images/ver.gif" bgcolor=#FF8D00 valign=bottom align=right> <span style="font-family: verdana; font-size: 12px; color: white"> <b> 
+            <div id="google_translate_element"></div> <a href="admindash.html" class=toplink>Home</a> &middot;  <a href="signin.html" class=toplink>Logout</a></b></span>&nbsp; &nbsp; </td> </tr> </table> </td> </tr> <tr> <td valign=top> <table cellspacing=0 cellpadding=1 border=0 width=100% bgcolor=#ff8d00> <tr> <td> <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0"> <tr bgcolor="#FFFFFF" valign="top">  <td width="500" align=center>  <ul class="nav" style="width:220px">   <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Plans</div> <div class="dropdown-menu">  <a class="dropdown-item" href="?a=programs"><i class="fa fa-signal"></i> Investment Programs</a>  <a class="dropdown-item" href="?a=expiring_deposits"><i class="fa fa-hourglass-end"></i> Expiring Deposits</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Users </div> <div class="dropdown-menu">  <a onclick="window.location.href='users.html'" class="dropdown-item" ><i class="fa fa-user"></i> Users <span class="badge sticker badge-success"><span id="totalUsersCount">0</span></span></a>  <a class="dropdown-item" href="?a=ext_accounts_blacklist"><i class="fa fa-times-circle"></i> Accounts Blacklist</a>  <a class="dropdown-item" href="?a=top_referral_earnings"><i class="fa fa-trophy"></i> Top Referral Earnings</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Transactions</div> <div class="dropdown-menu">  <a class="dropdown-item" href="?a=transactions"><i class="fa fa-book"></i> Transactions</a>  <a class="dropdown-item" onclick="viewPendingWithdrawals()"><i class="fa fa-hand-paper-o"></i> Withdrawal Requests</a>  <a class="dropdown-item" href="?a=transactions&ttype=add_funds"><i class="fa fa-list"></i> Add Funds</a>  <a class="dropdown-item" href="?a=transactions&ttype=deposit"><i class="fa fa-list"></i> Deposits</a>  <a class="dropdown-item" href="?a=transactions&ttype=withdrawal"><i class="fa fa-list"></i> Withdrawals</a>  <a class="dropdown-item" href="?a=transactions&ttype=earning"><i class="fa fa-list"></i> Earnings</a>  <a class="dropdown-item" href="?a=transactions&ttype=commissions"><i class="fa fa-list"></i> Referral</a>  <a class="dropdown-item" href="?a=transactions&ttype=exchange"><i class="fa fa-list"></i> Exchange</a>  <a class="dropdown-item" href="/pending-deposit"><i class="fa fa-compress"></i> Pending Deposits <span class="badge sticker badge-success"></span></a>  <a class="dropdown-item" href="?a=add_transactions"><i class="fa fa-plus-circle"></i> Add Bonus</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Settings</div>  </li>    <li class="nav-item"> <a class="nav-link" href="?a=logout">Logout</a> </li> </ul>  </td> <td bgcolor="#ff8d00" valign="top" width=1><img src=images/q.gif width=1 height=1></td>  <td bgcolor="#FFFFFF" valign="top" width=99%>
+    </div>
+    
+
+    <div class="tables">
+        <h2>Expiring Deposits</h2>
+    
+<table id="depositsTable">
+        <thead>
+            <tr>
+                <td>Email</th>
+                <td>Amount</th>
+                <td>Plan Name</th>
+                <td>Investment End Date</th>
+                <td>Days Left</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    </div>
+        
+    
+
+    <script>
+
+
+ // Fetch pending deposits count
+ document.addEventListener("DOMContentLoaded", () => {
+    // fetch('/api/expiring-deposits')
+    // .then(response => response.json())
+    // .then(deposits => {
+    //     console.log('Deposits fetched:', deposits); // Log response data
+    //     const tbody = document.getElementById('depositsTable').querySelector('tbody');
+    //     console.log('Table body element:', tbody);
+    //     deposits.forEach(deposit => {
+    //         console.log('Processing deposit:', deposit);
+    //         const row = document.createElement('tr');
+    //         row.innerHTML = `
+    //             <td>${deposit.user_id}</td>
+    //             <td style="color: red;">${deposit.amount}</td>
+    //             <td style="color: white; background-color:#ffc107;">${deposit.plan_name}</td>
+    //             <td>${new Date(deposit.investment_end_date).toLocaleString()}</td>
+    //             <td style="color: green;">${deposit.days_left}</td>
+    //         `;
+    //         tbody.appendChild(row);
+    //     });
+    // })
+    // .catch(error => console.error('Error fetching expiring deposits:', error));
+
+   
+});
+
+// Redirect to pending-withdrawals.html
+function viewPendingWithdrawals() {
+    window.location.href = '/pending-withdrawals.html';
+}
+
+
+
+
+
+ 
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     fetch('/api/admin/total-users')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             document.getElementById('totalUsersCount').textContent = data.total_users;
+    //         })
+    //         .catch(error => console.error('Error fetching total users:', error));
+    // });
+
+
+
+
+
+
+fetch('/api/expiring-deposits')
+            .then(response => response.json())
+            .then(deposits => {
+                const tbody = document.getElementById('depositsTable').querySelector('tbody');
+                deposits.forEach(deposit => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${deposit.email}</td>
+                        <td style="color: red;">${deposit.amount}</td>
+                        <td style="color: white; background-color:#ffc107; ">${deposit.plan_name}</td>
+                        <td>${new Date(deposit.investment_end_date).toLocaleString()}</td>
+                        <td style="color: green;">${deposit.days_left}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching expiring deposits:', error));
+    </script>
+</body>
+</html>

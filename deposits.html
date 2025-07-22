@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admindash.css">
+    <title>Deposits</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #ffab6b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="body">
+        <div class="menu">
+          <center> <table width="1280" border="0" cellpadding="0" cellspacing="0" > <tr> <td valign=top> <table cellspacing=0 cellpadding=0 border=0 width=100%> <tr> <td background="images/ver.gif" bgcolor=#FF8D00><img src="images/top.gif" border="0" align=left></td> <td background="images/ver.gif" bgcolor=#FF8D00 valign=bottom align=right> <span style="font-family: verdana; font-size: 12px; color: white"> <b> 
+            <div id="google_translate_element"></div> <a href="admindash.html" class=toplink>Home</a> &middot;  <a href="signin.html" class=toplink>Logout</a></b></span>&nbsp; &nbsp; </td> </tr> </table> </td> </tr> <tr> <td valign=top> <table cellspacing=0 cellpadding=1 border=0 width=100% bgcolor=#ff8d00> <tr> <td> <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0"> <tr bgcolor="#FFFFFF" valign="top">  <td width="500" align=center>  <ul class="nav" style="width:220px">   <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Plans</div> <div class="dropdown-menu">  <a class="dropdown-item" href="?a=programs"><i class="fa fa-signal"></i> Investment Programs</a>  <a class="dropdown-item" href="?a=expiring_deposits"><i class="fa fa-hourglass-end"></i> Expiring Deposits</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Users </div> <div class="dropdown-menu">  <a onclick="window.location.href='users.html'" class="dropdown-item" ><i class="fa fa-user"></i> Users <span class="badge sticker badge-success"><span id="totalUsersCount">0</span></span></a>  <a class="dropdown-item" href="?a=ext_accounts_blacklist"><i class="fa fa-times-circle"></i> Accounts Blacklist</a>  <a class="dropdown-item" href="?a=top_referral_earnings"><i class="fa fa-trophy"></i> Top Referral Earnings</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Transactions</div> <div class="dropdown-menu">  <a class="dropdown-item" href="?a=transactions"><i class="fa fa-book"></i> Transactions</a>  <a class="dropdown-item" onclick="viewPendingWithdrawals()"><i class="fa fa-hand-paper-o"></i> Withdrawal Requests</a>  <a class="dropdown-item" href="?a=transactions&ttype=add_funds"><i class="fa fa-list"></i> Add Funds</a>    <a class="dropdown-item" href="/pending-deposit"><i class="fa fa-compress"></i> Pending Deposits <span class="badge sticker badge-success"></span></a>  <a class="dropdown-item" href="?a=add_transactions"><i class="fa fa-plus-circle"></i> Add Bonus</a>  </div> </li>    </li>    <li class="nav-item"> <a class="nav-link" href="signin.html">Logout</a> </li> </ul>  </td> <td bgcolor="#ff8d00" valign="top" width=1><img src=images/q.gif width=1 height=1></td>  <td bgcolor="#FFFFFF" valign="top" width=99%>
+        </div>
+    <h1>All Deposits</h1>
+    <table id="deposits-table" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Investment Start Date</th>
+                <th>Investment End Date</th>
+                <th>Plan Name</th>
+                <th>Principle Return</th>
+                <th>Credit Amount</th>
+                <th>Deposit Fee</th>
+                <th>Debit Amount</th>
+                <th>Deposit Method</th>
+            </tr>
+        </thead>
+        <tbody id="deposits-list">
+            <!-- Data will be dynamically inserted here -->
+        </tbody>
+    </table>
+</div>
+    <script>
+        // Fetch all deposits from the backend
+        fetch('/api/admin/deposits')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Deposits Data:', data);
+                const depositsContainer = document.getElementById('deposits-list');
+
+                if (Array.isArray(data) && data.length > 0) {
+                    data.forEach(deposit => {
+                        const depositRow = document.createElement('tr');
+                        
+                        depositRow.innerHTML = `
+                            <td>${deposit.id}</td>
+                            <td>${deposit.email}</td>
+                            <td>$${deposit.amount}</td>
+                            <td>${new Date(deposit.date).toLocaleDateString()}</td>
+                            <td>${deposit.status}</td>
+                            <td>${new Date(deposit.investment_start_date).toLocaleDateString()}</td>
+                            <td>${new Date(deposit.investment_end_date).toLocaleDateString()}</td>
+                            <td>${deposit.plan_name}</td>
+                            <td>${deposit.plan_principle_return}</td>
+                            <td>${deposit.plan_credit_amount}</td>
+                            <td>${deposit.plan_deposit_fee}</td>
+                            <td>${deposit.plan_debit_amount}</td>
+                            <td>${deposit.deposit_method}</td>
+                        `;
+                        depositsContainer.appendChild(depositRow);
+                    });
+                } else {
+                    const noDataRow = document.createElement('tr');
+                    noDataRow.innerHTML = `<td colspan="13">No deposits found</td>`;
+                    depositsContainer.appendChild(noDataRow);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching deposits:', error);
+            });
+    </script>
+</body>
+</html>

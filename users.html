@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="stylesheet" href="./css/admindash.css"> 
+</head>
+<body bgcolor="#FFFFF2" link="#666699" vlink="#666699" alink="#666699"> 
+
+<header>
+    <h2>Moniegram</h2>
+</header>
+
+    <div class="body">
+      <div class="menu">
+        <center> <table width="1280" border="0" cellpadding="0" cellspacing="0" > <tr> <td valign=top> <table cellspacing=0 cellpadding=0 border=0 width=100%> <tr> <td background="images/ver.gif" bgcolor=#FF8D00><img src="images/top.gif" border="0" align=left></td> <td background="images/ver.gif" bgcolor=#FF8D00 valign=bottom align=right> <span style="font-family: verdana; font-size: 12px; color: white"> <b> 
+          <div id="google_translate_element"></div> <a href="admindash.html" class=toplink>Home</a> &middot;  <a href="signin.html" class=toplink>Logout</a></b></span>&nbsp; &nbsp; </td> </tr> </table> </td> </tr> <tr> <td valign=top> <table cellspacing=0 cellpadding=1 border=0 width=100% bgcolor=#ff8d00> <tr> <td> <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0"> <tr bgcolor="#FFFFFF" valign="top">  <td width="500" align=center>  <ul class="nav" style="width:220px">   <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Plans</div> <div class="dropdown-menu">  <a class="dropdown-item" href="?a=programs"><i class="fa fa-signal"></i> Investment Programs</a>  <a class="dropdown-item" href="?a=expiring_deposits"><i class="fa fa-hourglass-end"></i> Expiring Deposits</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Users </div> <div class="dropdown-menu">  <a onclick="window.location.href='users.html'" class="dropdown-item" ><i class="fa fa-user"></i> Users <span class="badge sticker badge-success"><span id="totalUsersCount">0</span></span></a>  <a class="dropdown-item" href="?a=ext_accounts_blacklist"><i class="fa fa-times-circle"></i> Accounts Blacklist</a>  <a class="dropdown-item" href="?a=top_referral_earnings"><i class="fa fa-trophy"></i> Top Referral Earnings</a>  </div> </li>    <li class="nav-item dropdown"> <div class="nav-link dropdown-toggle">Transactions</div> <div class="dropdown-menu">  <a class="dropdown-item" href="?a=transactions"><i class="fa fa-book"></i> Transactions</a>  <a class="dropdown-item" onclick="viewPendingWithdrawals()"><i class="fa fa-hand-paper-o"></i> Withdrawal Requests</a>  <a class="dropdown-item" href="?a=transactions&ttype=add_funds"><i class="fa fa-list"></i> Add Funds</a>    <a class="dropdown-item" href="/pending-deposit"><i class="fa fa-compress"></i> Pending Deposits <span class="badge sticker badge-success"></span></a>  <a class="dropdown-item" href="?a=add_transactions"><i class="fa fa-plus-circle"></i> Add Bonus</a>  </div> </li>    </li>    <li class="nav-item"> <a class="nav-link" href="signin.html">Logout</a> </li> </ul>  </td> <td bgcolor="#ff8d00" valign="top" width=1><img src=images/q.gif width=1 height=1></td>  <td bgcolor="#FFFFFF" valign="top" width=99%>
+      </div>
+      <h2>All Users</h2>
+        <table border="1">
+            <thead>
+                <tr style="height: 2rem;">
+                    <td>ID</td>
+                    <td>Full Name</td>
+                    <td>Email</th>
+                    <td>Username</th>
+                    <td>Bitcoin Address</th>
+                    <td>Referrer</th>
+                    <td>Created At</th>
+                    <td>Balance</th>
+                    <td>Verified</th>
+                    <td>Phone number</th>
+                    <td>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="usersTableBody">
+                <!-- Rows will be inserted dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     fetch('/api/pending-withdrawals-count')
+//         .then(response => response.json())
+//         .then(data => {
+//             // Update the count of pending withdrawals
+//             document.getElementById('pendingWithdrawalsCount').innerText = `${data.count}`;
+//         })
+//         .catch(error => console.error('Error fetching pending withdrawals count:', error));
+// });
+
+// Redirect to pending-withdrawals.html
+function viewPendingWithdrawals() {
+    window.location.href = '/pending-withdrawals.html';
+}
+
+
+
+// fetch('/api/admin/pending-deposits/count')
+//     .then(response => response.json())
+//     .then(data => {
+//         // Display the pending deposits count
+//         document.getElementById('pending-deposits').textContent = data.pending_deposits;
+//     })
+//     .catch(error => console.error('Error fetching pending deposits count:', error));
+
+ 
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     fetch('/api/admin/total-users')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             document.getElementById('totalUsersCount').textContent = data.total_users;
+    //         })
+    //         .catch(error => console.error('Error fetching total users:', error));
+    // });
+
+
+
+// Fetch and display all users on page load
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/api/admin/users')
+        .then(response => response.json())
+        .then(users => {
+            const usersTableBody = document.getElementById('usersTableBody');
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="background-color: white; height: 1.5rem;">${user.id}</td>
+                    <td style="background-color: white; height: 1.5rem;">${user.fullName}</td>
+                    <td style="background-color: white; height: 1.5rem;">${user.email}</td>
+                    <td style="background-color: white; height: 1.5rem;">${user.username}</td>
+                    <td style="background-color: white; height: 1.5rem;">${user.bitcoin_address}</td>
+                    <td style="background-color: white; height: 1.5rem;">${user.referrer}</td>
+                    <td style="background-color: white; height: 1.5rem;">${new Date(user.createdAt).toLocaleDateString()}</td>
+                    <td style="background-color: white; height: 1.5rem;">${user.balance}</td>
+                    <td style="background-color: white; height: 1.5rem;">${user.verified}</td>
+                    <td style="background-color: white; height: 1.5rem;">${user.phone}</td>
+                    <td style="background-color: green; color: white; padding: 0.7rem;">
+                        <a href="/fund-user.html?email=${encodeURIComponent(user.email)}" class="addbonus" style="text-decoration: none; color: white;">Fund</a>
+                    </td>
+                `;
+                usersTableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching users:', error));
+});
+
+//         function fundUser(email) {
+//     // Redirect to the fund page with the email as a query parameter
+//     window.location.href = `fund-user.html?email=${encodeURIComponent(email)}`;
+
+//     const fundUserLink = document.querySelector('.addbonus');
+// fundUserLink.href = `/fund-user.html?userId=${user.id}`;
+
+// }
+
+    </script>
+</body>
+</html>
