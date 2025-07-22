@@ -59,7 +59,8 @@
  
 </section>
 <div id="overviewContent" class="tab-content">
-  <canvas id="investmentChart" width="100%" height="300"></canvas>
+  <canvas id="investmentChart" style="height: 200px !important; max-height: 200px;"></canvas>
+
 </div>
 <div id="transactionsContent" class="tab-content" style="display:none;">
   <p>Loading transactions...</p>
@@ -302,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scales: {
           y: {
             beginAtZero: true,
-            max: 100000
+            max: 5000
           }
         }
       }
