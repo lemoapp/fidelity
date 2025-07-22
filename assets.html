@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Assets Page - Biggycapital</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/assets.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Jacquarda+Bastarda+9&family=Poppins:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loader">Hold on a bit Biggycapital is loading your Assets...</div>
+    <div class="assets-container">
+        <!-- Title Section -->
+        <section class="header">
+            <div class="logo">
+                <img src="./images/selar logo.png" alt="">
+            </div>
+            <img src="./images/2606572_5907.jpg" alt="" class="notification">
+        </section>
+        <header>
+            <h2>Assets</h2>
+            <p>Overview of your active investments</p>
+        </header>
+
+        <!-- Total Assets Section -->
+        <section class="total-assets">
+            <h4>Total Assets</h4>
+            <div class="total-value" id="totalAmount">$0</div> <!-- This value will be updated dynamically -->
+            <p>Total value of all active investments.</p>
+        </section>
+
+        <!-- Investment Table -->
+        <section class="investment-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Investment Plan</th>
+                        <th>Amount</th>
+                        <th>Profit</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody id="investment-list">
+                    <!-- Investment data rows will be added dynamically via JS -->
+                </tbody>
+            </table>
+        </section>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h3>Pick a plan to invest now</h3>
+                <a href="invest.html" class="cta-button" id="invest-now-button">Invest now</a><br><br>
+                <div class="plans">
+                    <div class="plan-line1">
+                        <div class="plan">
+                            <a href="invest.html"><img src="./images/Frame 34.png" alt=""></a>
+                           
+                        </div>
+                        <div class="plan">
+                            <a href="invest.html">
+                                <img src="./images/Frame 35.png" alt="">
+                            </a>
+                           
+                        </div>
+                    </div>
+                    <div class="plan-line1">
+                        <div class="plan">
+                            <a href="invest.html">
+                                <img src="./images/Frame 36.png" alt="">
+                            </a>
+                           
+                        </div>
+                        <!-- <div class="plan">
+                            <a href="invest.html">
+                                <img src="./images/Frame 37.png" alt="">
+                            </a>
+                           
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-transactions">
+            <h2 style="font-size: 10px;">Recent Transactions</h2>
+            <ul id="transaction-list">
+                
+            </ul>
+        </section>
+    </div><br><br><br><br><br><br>
+
+    <div class="bottom-nav">
+    <div class="active">Assets</div>
+    <a href="main-page.html"><div>Portfolio</div></a>
+    <a href="withdrawal.html"><div>Withdraw</div></a>
+  </div>
+<!-- Smartsupp Live Chat script -->
+
+    <!-- Link to the JavaScript file -->
+    <script>
+
+window.onload = function() {
+    document.getElementById("loader").style.display = "none"; // Hide loader
+    document.querySelector(".container").style.display = "block"; // Show content
+
+
+};
+
+      document.addEventListener('DOMContentLoaded', async () => {
+    const userEmail = localStorage.getItem('userEmail');
+
+    // Fetch assets
+    try {
+        const response = await fetch('/api/assets', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: userEmail }) // Sending email in request body
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch assets');
+        }
+
+        const data = await response.json();
+
+        // Display total amount of active deposits
+        const totalAmount = data.totalAmount || 0; // Default to 0 if undefined
+        document.querySelector('.total-value').innerText = `$${totalAmount.toFixed(2)}`; // Use toFixed() on valid number
+
+        // Display deposits
+        const depositsBody = document.getElementById('investment-list'); // Make sure this matches the HTML
+        data.deposits.forEach(deposit => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${deposit.plan_name}</td>
+                <td>${deposit.amount}</td>
+                <td>${deposit.profit}</td>
+                <td>${new Date(deposit.investment_end_date).toLocaleDateString()}</td>
+            `;
+            depositsBody.appendChild(row);
+        });
+
+        // Display transactions
+        const transactionsBody = document.getElementById('transaction-list'); // Make sure this matches the HTML
+        data.transactions.forEach(transaction => {
+            const row = document.createElement('li');
+            row.innerHTML = `
+                ${transaction.plan_name}: ${transaction.plan_profit} on ${new Date(transaction.transaction_date).toLocaleDateString()}
+            `;
+            transactionsBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Error fetching assets:', error);
+    }
+});
+
+    </script>
+</body>
+</html>
