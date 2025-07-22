@@ -455,7 +455,7 @@ img {
     bottom: -50vh; /* Start off-screen */
     left: 0;
     right: 0;
-    background-color: rgba(65, 65, 65, 0.233);
+    background-color: #0f1115;
     backdrop-filter: blur(2px);
     color: white;
     padding: 20px;
@@ -494,7 +494,7 @@ img {
 }
 
 .overlay-content h3 {
-    color: rgb(38, 38, 38);
+    color: #4caf50;
     font-size: 13px;
 }
 
@@ -512,7 +512,7 @@ img {
     margin: 20px 0;
     cursor: pointer;
     text-align: left;
-    background: linear-gradient(to right, rgb(0, 171, 131), rgb(248, 248, 248), rgb(255, 255, 255));
+    background: linear-gradient(to right, #23272f, #0f1115, #0f1115);
     padding: 10px;
     border-radius:5px;
     margin-top: 1rem;
