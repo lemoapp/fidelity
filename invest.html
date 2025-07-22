@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest - Biggycapital</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="  #000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="./css/invest.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+
+</head>
+<body>
+   
+    <div class="dashboard-container"><br>
+        <div class="body">
+              <main class="dashboard-main">
+                <div class="tabs">
+                  <div class="tab1">
+                    <div class="tab" data-plan="plan-1" data-index="0" style=" background: linear-gradient(to right, rgb(255, 255, 255), rgb(218, 218, 218), rgba(2, 29, 182, 0.13));"> 
+                      <input type="radio" name="plan" id="plan-1-radio" value="plan-1">
+                      <h2>20% RIO AFTER 24 HOURS</h2>
+                      <P class="range">$50 - $999
+                        <br>
+                        <p style="font-size: 7px;">
+                            Our Plan A is ideal for investors seeking steady, low-risk growth. With a 20% return on investment (ROI), this plan offers a solid and reliable performance for those who prefer a conservative approach. It’s a great way to begin your investment journey, allowing you to build confidence while minimizing exposure to market fluctuations.
+                        </p>
+                      </P> 
+                     
+                      
+                      <!-- <button>Calculate</button>                        -->
+                    </div>
+                    <div class="tab" data-plan="plan-2" data-index="1" style=" background: linear-gradient(to right, rgba(2, 29, 182, 0.13), rgb(218, 218, 218), rgb(245, 244, 243));">
+                      <input type="radio" name="plan" id="plan-2-radio" value="plan-2" >
+                      <h2>35% RIO 72 HOURS</h2>
+                      <P class="range">$1000 - $4999</P> 
+                      <!-- <button>Calculate</button>                        -->
+                       <br>
+                       <p style="font-size: 7px;">
+                            Plan B: 35% Returns
+                            For investors seeking moderate growth with slightly higher returns, Plan B offers a 35% ROI. This plan is balanced, providing an opportunity for enhanced returns without taking on excessive risk. It’s perfect for investors looking to move beyond the conservative approach and aim for better growth potential.
+                        </p>
+                    </div>
+                  </div>
+                  <div class="tab1">
+                    <div class="tab" data-plan="plan-3" data-index="2" style=" background: linear-gradient(to right, rgb(255, 255, 255), rgb(218, 218, 218), rgba(2, 29, 182, 0.13))">
+                      <input type="radio" name="plan" id="plan-3-radio" value="plan-3">
+                      <h2>50% RIO LONG TERM</h2>
+                      <P class="range">$5000 - Unlimited</P>
+                      
+                      <p style="font-size: 7px;">
+                            Plan C: 50% Returns
+                            Plan C is for investors ready to engage in higher-reward opportunities, with a 50% ROI. This plan is structured for those who are comfortable with moderate risk and want to experience significant gains. It’s an ideal choice for those seeking to capitalize on market opportunities while still maintaining some level of risk control.
+                        </p>
+                      <!-- <button>Calculate</button>                        -->
+                    </div>
+                    <!-- <div class="tab"  data-plan="plan-4" data-index="3" style=" background: linear-gradient(to right, rgb(248, 166, 50), rgb(255, 205, 136), rgb(255, 166, 42));">
+                      <input type="radio" name="plan" id="plan-4-radio" value="plan-4">
+                      <h2>100% RIO AFTER 14 DAYS</h2>
+                      <P class="range">$500 - Infinity</P> 
+                     
+                    </div> -->
+                  </div>
+                </div>
+
+                <h4>Deposit method</h4>
+               
+                <form action="">
+                    <div class="spend">
+                      <p id="account-balance"></p>
+                      <input type="number" id="deposit-amount" placeholder="$20.00" required class="amount">
+                      <div class="deposit-method">
+                        <input type="radio" id="bitcoin" name="deposit-method" value="crypto" checked>
+                        <label for="bitcoin">Invest with Crypto</label> <br>
+                        <input type="radio" name="deposit-method" value="balance">
+                        <label for="deposit-method">
+                          Spend funds from Balance
+                        </label>
+                        <div id="extra-radio"></div>
+                      </div>
+                      <button id="deposit button" class="spend button" style="background: linear-gradient(to right, rgb(0, 131, 50), rgb(88, 250, 169), rgb(0, 133, 51)); color: rgb(0, 0, 0); font-size: 13px; font-weight: bold; width: 50%; padding: 0.6rem; border-style: none; border-radius: 20rem;">Deposit</button>
+                      <div id="deposit-error" style="color: red;"></div>
+                    </div>
+                </form>
+              </main>
+        </div><br><br><br><br><br><br><br>
+
+        <nav class="bottom-nav">
+          <ul class="nav-links">
+              <li><a href="main-page.html"><img src="./images/Home Page.png"><span>Home</span></a></li>
+              <li><a href="chatbot.html"><img src="./images/Chat.png" alt="Services Icon" style=" border-radius: 20rem;"><span>Chat</span></a></li>
+              <li><a href="wallet.html"><img src="./images/Wallet.png" alt="About Icon" style="border-radius: 20rem;"><span>Wallet</span></a></li>
+              <li><a href="profile.html"><img src="./images/Male User.png" alt="About Icon" style="border-radius: 20rem;"><span>Profile</span></a></li>
+              <li><a href="assets.html"><img src="./images/Crypto Trading Options.png" alt="Contact Icon"><span>Assets</span></a></li>
+          </ul>
+      </nav>
+      
+
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = 'ca4f2523f798b867912554a1fae0aa0221f03573';
+    window.smartsupp||(function(d) {
+      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+      c.type='text/javascript';c.charset='utf-8';c.async=true;
+      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+    })(document);
+    </script>
+    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+     <script src="java.js"></script>
+     <script>
+      // Add an event listener to the window load event
+      window.addEventListener('load', function() {
+        const email = localStorage.getItem('userEmail'); // Correct key for email
+    
+        fetch(`/users?email=${email}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (Array.isArray(data)) {
+            const userData = data[0];
+            document.getElementById('account-balance').innerHTML = `Account Balance: ${userData.balance}`;
+          } else {
+            console.error('Invalid response data');
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error);
+        });
+      });
+    
+      // Plan details with deposit limits
+      const planDetails = [
+        {
+          name: '20% RIO AFTER 24 HOURS',
+          profit: '20%',
+          principleReturn: 'Yes',
+          creditAmount: '',
+          depositFee: '0.00',
+          debitAmount: '',
+          period: '1 days',
+          minDeposit: 50,
+          maxDeposit: 999
+        },
+        {
+          name: '35% RIO AFTER 72 HOURS',
+          profit: '35%',
+          principleReturn: 'Yes',
+          creditAmount: '',
+          depositFee: '0.00',
+          debitAmount: '',
+          period: '3 days',
+          minDeposit: 1000,
+          maxDeposit: 4999
+        },
+        {
+          name: '50% RIO AFTER 1 WEEK',
+          profit: '50%',
+          principleReturn: 'Yes',
+          creditAmount: '',
+          depositFee: '0.00',
+          debitAmount: '',
+          period: '7 days',
+          minDeposit: 5000,
+          maxDeposit: 5000000
+        },
+        {
+          name: '100% RIO AFTER 14 DAYS',
+          profit: '100%',
+          principleReturn: 'Yes',
+          creditAmount: '',
+          depositFee: '0.00',
+          debitAmount: '',
+          period: '14 days',
+          minDeposit: 500,
+          maxDeposit: 5000000
+        },
+      ];
+    
+      // Replace the deposit button event listener
+  document.querySelector('.spend button').addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const depositAmount = parseFloat(document.querySelector('#deposit-amount').value);
+    
+    // Get the selected plan input
+    const selectedPlanInput = document.querySelector('input[name="plan"]:checked');
+    
+    if (!selectedPlanInput) {
+      alert("Please select a plan.");
+      return;
+    }
+
+    // Now access the parent div of the selected radio input to get the plan index
+    const selectedPlanDiv = selectedPlanInput.closest('.tab');
+    const selectedPlanIndex = selectedPlanDiv.dataset.index;
+
+    if (!selectedPlanIndex) {
+      console.error('Invalid selected plan index:', selectedPlanIndex);
+      alert("An error occurred. Please select a valid plan.");
+      return;
+    }
+
+    const depositMethod = document.querySelector('input[name="deposit-method"]:checked').value;
+    const email = localStorage.getItem('userEmail'); // Correct key for email
+
+    if (selectedPlanIndex >= 0 && selectedPlanIndex < planDetails.length) {
+      const selectedPlan = planDetails[selectedPlanIndex];
+
+      // Check deposit limits
+      if (depositAmount < selectedPlan.minDeposit || depositAmount > selectedPlan.maxDeposit) {
+        alert(`Deposit amount must be between $${selectedPlan.minDeposit} and $${selectedPlan.maxDeposit}`);
+        return; // Stop if amount is out of bounds
+      }
+
+      const depositData = {
+        planName: selectedPlan.name, // match the backend variable
+        depositAmount,
+        depositMethod,
+        email // Use the correct email from localStorage
+      };
+
+      // Send deposit data to backend
+      fetch('/api/deposit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(depositData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          // Redirect to confirmation page or show success message
+          window.location.href = `confirm.html?plan=${encodeURIComponent(selectedPlan.name)}&deposit-method=${depositMethod}&credit-amount=${depositAmount}`;
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while processing your deposit.');
+      });
+    } else {
+      console.error('Invalid selected plan index:', selectedPlanIndex);
+    }
+  });
+    </script>  
+</body>
+</html>

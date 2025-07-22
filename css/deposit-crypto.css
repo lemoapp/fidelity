@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: url('/images/Frame 118.png') no-repeat center center;
+    background-size: cover;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff5d;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h3 {
+    margin-bottom: 10px;
+    color: rgb(42, 46, 255);
+    font-size: 13px;
+}
+
+.crypto-selection {
+    margin-bottom: 20px;
+}
+
+.crypto-selection label{
+    color: rgb(42, 46, 255);
+    font-size: 13px;
+    font-weight: bolder;
+}
+
+.crypto-selection select{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(2, 29, 182, 0.13);
+    color: rgb(0, 0, 0);
+    border-style: none;
+    width: 100%;
+}
+
+.crypto-selection option{
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+    margin: 5px;
+}
+
+.wallet-address-section,
+.qr-code-section,
+.transaction-instructions,
+.deposit-history-section {
+    margin-bottom: 30px;
+}
+
+#walletAddress {
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.115);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bolder;
+    color: rgb(0, 0, 0);
+    
+}
+
+button {
+    padding: 10px 20px;
+    /* background: linear-gradient(to right, purple, rgb(211, 87, 211),rgb(104, 5, 104)); */
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+button img{
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.qr-code-section{
+    
+}
+
+.qr-code-section img{
+    width: 12rem;
+    margin-left: 25%;
+}
+
+
+.amount-section{
+    margin-top: 20px;
+}
+
+.amount-section label{
+    color: rgb(42, 46, 255);
+    font-size: 13px;
+    font-weight: bolder;
+}
+
+
+.amount-section input{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(2, 29, 182, 0.13);
+    color: white;
+    border-style: none;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+
+.deposit-action{
+    margin-bottom: 10px;
+}
+
+.deposit-action button{
+    padding: 5px 20px;
+    background: linear-gradient(to right, #05c49a, rgb(14, 173, 120), rgb(2, 150, 46));
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.confirmation-slide{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+.confirmation-slide p{
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+}
+
+
+
+
+
+
+.transaction-instructions{
+    background-color: rgba(2, 29, 182, 0.13);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.transaction-instructions ul li{
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background: linear-gradient(to right, rgb(248, 166, 50), rgb(255, 205, 136), rgb(255, 166, 42));
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* Bottom Navigation Menu */
+.bottom-nav {
+     background: linear-gradient(to right, rgb(42, 46, 255), rgb(44, 65, 255), rgb(42, 46, 255));
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    margin-left: -1.3rem;
+}
+
+.bottom-nav .nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    list-style: none;
+}
+
+.bottom-nav .nav-links li {
+    text-align: center;
+    flex: 1;
+}
+
+.bottom-nav .nav-links li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.bottom-nav .nav-links li a img {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 4px;
+}
+
+.bottom-nav .nav-links li a span {
+    font-size: 10px;
+}
+
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    /* font-weight: bold; */
+    z-index: 9999;
+    color:  rgb(42, 46, 255);
+}

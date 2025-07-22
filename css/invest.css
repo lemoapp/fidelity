@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: url('/images/Frame 118.png') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.dashboard-container{   
+
+}
+
+
+.tab{
+    margin-bottom: 15px;
+}
+
+.tab input{
+    margin: 10px;
+}
+
+.tab h2{
+    font-size: 16px;
+    color: rgb(3, 3, 3);
+    margin: 0px 20px;
+}
+
+.tab .range{
+    color: black;
+    margin: 10px 20px;
+    font-size: 13px;
+}
+
+h4{
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    margin-top: 25px;
+}
+
+form{
+    margin-top: 10px;
+    background-color: rgba(2, 29, 182, 0.13);
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+
+form .amount{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color:rgba(2, 29, 182, 0.13);
+    color: rgb(0, 0, 0);
+    border-style: none;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+form input{
+    margin-bottom: 15px;
+}
+
+form label{
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+}
+
+h3{
+    color: rgb(42, 46, 255);
+    
+}
+
+.bitcoinaddress{
+    background-color: rgba(2, 29, 182, 0.13);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.bitcoinaddress p{
+    font-size: 13px;
+    color: rgb(42, 46, 255);
+}
+
+.crypto-address{
+    background-color: rgba(2, 29, 182, 0.13);
+    padding: 10px ;
+    border-radius: 5px;
+}
+
+.crypto-address p{
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+}
+
+.crypto-address p span{
+    font-weight: bold;
+}
+
+.crypto-address .confirm-button{
+    padding: 5px 20px;
+    background: linear-gradient(to right, rgb(255, 255, 255), rgb(202, 202, 202), rgb(255, 255, 255));
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background: url('/images/Frame 118.png') no-repeat center center/cover;
+    /* background: transparent; */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 600px;
+    margin-top: 1rem;
+}
+
+.container h4{
+    font-size: 15px;
+}
+
+.container ul{
+    background-color: rgba(255, 255, 255, 0.849);
+    padding: 5px 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container ul li{
+    margin: 1.5rem 0rem;
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    gap: 5rem;
+    font-size: 15px;
+    font-weight: bold;
+    
+}
+
+.container ul li .label{
+   background-color: transparent;
+}
+
+.actions{
+    padding: 5px 1rem;
+     background-color: rgba(0, 0, 0, 0);
+    padding: 25px 1rem;
+    margin-top: -1rem;
+    display: flex;
+    gap: 1rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.actions .confirm-button{
+    background: linear-gradient(to right, rgb(0, 142, 85), rgb(13, 200, 85), rgb(0, 129, 65));
+     color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px 20px;
+}
+
+.actions .cancel-button{
+    background: linear-gradient(to right, rgb(142, 0, 0), rgb(255, 54, 54), rgb(93, 0, 0));
+     color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px 20px;
+}
+
+
+/* Bottom Navigation Menu */
+.bottom-nav {
+    background: linear-gradient(to right, rgb(42, 46, 255), rgb(44, 65, 255), rgb(42, 46, 255));
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    margin-left: -1.3rem;
+}
+
+.bottom-nav .nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    list-style: none;
+}
+
+.bottom-nav .nav-links li {
+    text-align: center;
+    flex: 1;
+}
+
+.bottom-nav .nav-links li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.bottom-nav .nav-links li a img {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 4px;
+}
+
+.bottom-nav .nav-links li a span {
+    font-size: 10px;
+}
+
+
+.spinner {
+    display: none; /* Initially hidden */
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #2a2eff; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    margin-left: -30px; /* Half of spinner width */
+    margin-top: -30px;  /* Half of spinner height */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

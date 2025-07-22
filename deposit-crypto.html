@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="  #000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Deposit Crypto - Biggycapital</title>
+    <link rel="stylesheet" href="css/deposit-crypto.css">
+    <!-- <link rel="stylesheet" href="./css/main-page.css">  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Jacquarda+Bastarda+9&family=Poppins:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loader">Hold on a bit Biggycapital is getting resources...</div>
+    <div class="container">
+        <h3 style="text-align: center; background: linear-gradient(to right, rgb(0, 9, 128), rgb(87, 99, 211),rrgb(5, 12, 104); -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent; font-size: 16px;">Deposit Cryptocurrency</h3>
+
+        <!-- Select Cryptocurrency Section -->
+        <div class="crypto-selection">
+            <label for="cryptoSelect">Select Cryptocurrency</label><br>
+            <select id="cryptoSelect">
+                <option value="bitcoin">Bitcoin (BTC)</option>
+                <option value="ethereum">Ethereum (ETH)</option>
+                <option value="usdt">Tether (USDT)</option>
+                <!-- <option value="litcoin">Litcoin</option> -->
+            </select>
+        </div>
+
+
+        <!-- Wallet Address Display -->
+        <div class="wallet-address-section">
+            <h3>Deposit Wallet Address ></h3>
+            <p id="walletAddress">bc1ql6ctq7ax5vsuxfqwlwg9yx0wss3jesq3npracd</p> <!-- Placeholder address -->
+            <button id="copyWalletAddress" style="padding: 5px 10px; background: linear-gradient(to right, rgb(0, 0, 0), rgb(124, 124, 124),rgb(37, 37, 37)); color: ;">Copy Address</button>
+        </div>
+
+        <!-- QR Code Display -->
+        <div class="qr-code-section">
+            <h3>QR Code ></h3>
+            <img src="./images/btc qrcode.jpg" alt="QR Code" id="qrCode"> 
+        </div>
+
+        <!-- Amount Input Section -->
+        <div class="amount-section">
+            <label for="cryptoAmount">Enter Amount (USD)</label><br>
+            <input type="number" id="cryptoAmount" placeholder="Enter amount in USD">
+        </div>
+
+        <!-- Deposit Button -->
+        <div class="deposit-action">
+            <button id="initiateDeposit">Deposit</button>
+        </div>
+
+        <!-- Confirmation Slide-in Page -->
+        <div id="confirmationSlide" class="confirmation-slide" style="display: none;">
+            <div class="confirmation-content">
+                <h3>Confirm Your Deposit</h3>
+                <p id="confirmCrypto"></p>
+                <p id="confirmAmount"></p>
+                <button id="confirmDeposit" style="padding: 10px 20px; background-color: #42a642;">Confirm</button>
+                <button id="cancelDeposit" style="padding: 10px; background-color: #f84242;">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Transaction Instructions -->
+        <div class="transaction-instructions">
+            <h3>Deposit Instructions</h3>
+            <ul>
+                <li>Ensure the correct cryptocurrency is selected.</li>
+                <li>Copy the wallet address or scan the QR code to send your deposit.</li>
+                <li>Ensure network fees are accounted for when making the transaction.</li>
+                <li>Your deposit will be credited once confirmed by the network.</li>
+            </ul>
+        </div>
+    </div><br><br><br><br><br>
+
+    <nav class="bottom-nav">
+        <ul class="nav-links">
+            <li><a href="main-page.html"><img src="./images/Home Page.png"><span>Home</span></a></li>
+            <li><a href="chatbot.html"><img src="./images/Chat.png" alt="Services Icon" style=" border-radius: 20rem;"><span>Chat</span></a></li>
+            <li><a href="wallet.html"><img src="./images/Wallet.png" alt="About Icon" style="border-radius: 20rem;"><span>Wallet</span></a></li>
+            <li><a href="profile.html"><img src="./images/Male User.png" alt="About Icon" style="border-radius: 20rem;"><span>Profile</span></a></li>
+            <li><a href="assets.html"><img src="./images/Crypto Trading Options.png" alt="Contact Icon"><span>Assets</span></a></li>
+        </ul>
+    </nav>
+
+    <script>
+
+window.onload = function() {
+    document.getElementById("loader").style.display = "none"; // Hide loader
+    document.querySelector(".container").style.display = "block"; // Show content
+
+
+};
+
+      document.addEventListener('DOMContentLoaded', () => {
+    const walletAddress = 'bc1qz8pd5xuefctndjauynhrrj444uywvjvrn335rk'; // Example wallet address
+    let selectedCrypto = 'bitcoin';
+    let enteredAmount = 0;
+
+    // Copy wallet address to clipboard
+    document.getElementById('copyWalletAddress').addEventListener('click', () => {
+        navigator.clipboard.writeText(walletAddress).then(() => {
+            alert('Wallet address copied to clipboard');
+        }).catch(err => {
+            console.error('Failed to copy address: ', err);
+        });
+    });
+
+    // Update QR code and wallet address when cryptocurrency selection changes
+    document.getElementById('cryptoSelect').addEventListener('change', function () {
+        selectedCrypto = this.value;
+        let newWalletAddress;
+        let qrCodePath;
+
+        switch (selectedCrypto) {
+            case 'bitcoin':
+                newWalletAddress = 'bc1qz8pd5xuefctndjauynhrrj444uywvjvrn335rk';
+                qrCodePath = './images/btc qrcode.jpg';
+                break;
+            case 'ethereum':
+                newWalletAddress = '0x94B72704C69A4a9b7267eE08eAD08f61e9553Ec3';
+                qrCodePath = './images/etherium qrcode.jpg';
+                break;
+            case 'usdt':
+                newWalletAddress = 'TPfAXDcbYaWCFnWxQ67r8ZnkEbJWnehoKn';
+                qrCodePath = './images/tether.jpg';
+                break;
+            // case 'litcoin':
+            //     newWalletAddress = 'LZAeh8BnqM8abFSNGDQiRvPoUEhGyBxrDN';
+            //     qrCodePath = './images/litcoin qrcode.jpg';
+            //     break;
+        }
+
+        document.getElementById('walletAddress').textContent = newWalletAddress;
+        document.getElementById('qrCode').src = qrCodePath;
+    });
+
+    // Handle Deposit initiation
+    document.getElementById('initiateDeposit').addEventListener('click', () => {
+        enteredAmount = document.getElementById('cryptoAmount').value;
+        if (!enteredAmount || enteredAmount <= 0) {
+            alert('Please enter a valid amount');
+            return;
+        }
+
+        // Show the confirmation slide-in page
+        document.getElementById('confirmationSlide').style.display = 'block';
+        document.getElementById('confirmCrypto').textContent = `Cryptocurrency: ${selectedCrypto.toUpperCase()}`;
+        document.getElementById('confirmAmount').textContent = `Amount: $${enteredAmount}`;
+    });
+
+    // Confirm Deposit action
+    document.getElementById('confirmDeposit').addEventListener('click', async () => {
+        const userEmail = localStorage.getItem('userEmail'); // Retrieve user's email from local storage
+        const depositDetails = {
+            email: userEmail, // Use the retrieved email
+            amount: enteredAmount,
+            deposit_method: selectedCrypto // Change this key to match the backend
+        };
+
+        try {
+            const response = await fetch('/api/create-deposit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(depositDetails)
+            });
+
+            if (response.ok) {
+                alert('Deposit initiated successfully. after making deposit, please come back to your dashborad and confirm that you have made desposit. Crypto deposits take at least 24hours  to be confirmed in blockchain network.');
+
+                window.location.href = `main-page.html?email=${encodeURIComponent(userEmail)}`;
+                // Reload the deposit history (optional)
+                fetchDepositHistory();
+            } else {
+                const errorData = await response.json();
+                alert(`Error: ${errorData.message}`); // Show the error message from the server
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error initiating deposit');
+        }
+
+        // Hide the confirmation slide-in page
+        document.getElementById('confirmationSlide').style.display = 'none';
+    });
+
+    // Fetch Deposit History (you can reuse this function as needed)
+    async function fetchDepositHistory() {
+        try {
+            const response = await fetch('/api/deposit-history');
+            if (!response.ok) {
+                throw new Error('Failed to fetch deposit history');
+            }
+            const data = await response.json();
+
+            // Populate deposit history table
+            const depositHistoryTable = document.getElementById('depositHistory');
+            depositHistoryTable.innerHTML = ''; // Clear any existing rows
+
+            data.forEach(record => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${new Date(record.date).toLocaleString()}</td>
+                    <td>${record.deposit_method}</td>
+                    <td>${record.amount} ${record.currency}</td>
+                    <td>${record.status}</td>`;
+                depositHistoryTable.appendChild(row);
+            });
+        } catch (error) {
+            console.error('Error fetching deposit history:', error);
+        }
+    }
+
+    // Initial fetch of deposit history (uncomment if needed)
+    fetchDepositHistory();
+});
+</script>
+</body>
+</html>

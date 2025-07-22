@@ -337,11 +337,12 @@ button img {
     padding: 5px;
 }
 
-.functions1 p{
+.functions1 .tab-button{
     color: rgba(0, 0, 0, 0.993);
     font-size: 10px;
     text-align: center;
     margin-top: 2px;
+    font-weight: bold;
 }
 
 .functions2{

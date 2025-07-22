@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="  #1f1f1f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="  #1f1f1f">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Withdrawal - Biggycapital</title>
+    <link rel="stylesheet" href="./css/withdrawal.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Jacquarda+Bastarda+9&family=Poppins:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="dashboard-header">
+    <div class="user-info">
+      <h3>Balance</h3>
+      <span id="balance">Loading...</span>
+    </div>
+</header>
+
+<div class="itemsa">
+    <form id="withdraw-form">
+      <div class="form-flex">
+        <label for="withdraw-amount">Withdrawal Amount</label>
+        <input type="number" id="withdraw-amount" name="withdraw-amount" placeholder="0.00" required>
+      </div><br>
+    
+      <!-- Withdrawal method selection -->
+      <div class="form-flex">
+        <label for="withdraw-method">Withdrawal method:</label>
+        <select id="withdraw-method" name="withdraw-method" required >
+          <option value="">Select method</option>
+          <option value="bank">Bank Account</option>
+          <option value="wallet">Crypto Wallet</option>
+        </select>
+      </div><br>
+      <!-- Bank account inputs (hidden by default) -->
+      <div id="bank-details" class="form-flex" style="display:none;">
+        <label for="">Account details</label><br>
+        <input type="text" id="bank-name" name="bank-name" placeholder="Enter bank name">
+        <input type="text" id="account-name" name="account-name" placeholder="Enter account name">
+        <input type="text" id="account-number" name="account-number" placeholder="Enter account number">
+      </div><br>
+    
+      <!-- Wallet address input (hidden by default) -->
+      <div id="wallet-address-div" class="form-flex" style="display:none;">
+        <label for="wallet-address">Wallet Address</label>
+        <input type="text" id="wallet-address" name="wallet-address" placeholder="Enter wallet address & currency">
+      </div><br>
+    
+      <button type="submit">Submit Withdrawal</button>
+    </form>
+  
+    <p id="message"></p>
+</div><br><br><br><br>
+
+<nav class="bottom-nav">
+    <ul class="nav-links">
+        <li><a href="main-page.html"><img src="./images/Home Page.png"><span>Home</span></a></li>
+        <li><a href="chatbot.html"><img src="./images/Chat.png" alt="Services Icon" style=" border-radius: 20rem;"><span>Chat</span></a></li>
+        <li><a href="wallet.html"><img src="./images/Wallet.png" alt="About Icon" style="border-radius: 20rem;"><span>Wallet</span></a></li>
+        <li><a href="profile.html"><img src="./images/Male User.png" alt="About Icon" style="border-radius: 20rem;"><span>Profile</span></a></li>
+        <li><a href="assets.html"><img src="./images/Crypto Trading Options.png" alt="Contact Icon"><span>Assets</span></a></li>
+    </ul>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const userEmail = localStorage.getItem('userEmail'); // Get the userEmail from local storage
+        const withdrawForm = document.getElementById('withdraw-form');
+        const withdrawMethod = document.getElementById('withdraw-method');
+        const bankDetailsDiv = document.getElementById('bank-details');
+        const walletAddressDiv = document.getElementById('wallet-address-div');
+
+        // Fetch user balance on page load
+        let currentBalance = 0;
+
+        fetch('/api/getBalance', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: userEmail })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                currentBalance = data.balance; // Store the balance for later comparison
+                document.getElementById('balance').textContent = currentBalance;
+            } else {
+                console.error('Error fetching balance:', data.message);
+            }
+        })
+        .catch(error => console.error('Error fetching balance:', error));
+
+        // Show/hide inputs based on withdrawal method selection
+        withdrawMethod.addEventListener('change', () => {
+            if (withdrawMethod.value === 'bank') {
+                bankDetailsDiv.style.display = 'block';
+                walletAddressDiv.style.display = 'none';
+            } else if (withdrawMethod.value === 'wallet') {
+                bankDetailsDiv.style.display = 'none';
+                walletAddressDiv.style.display = 'block';
+            } else {
+                bankDetailsDiv.style.display = 'none';
+                walletAddressDiv.style.display = 'none';
+            }
+        });
+
+        // Handle withdrawal form submission
+        withdrawForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const amount = parseFloat(document.getElementById('withdraw-amount').value); // Ensure amount is a number
+    const method = withdrawMethod.value;
+
+    if (amount > currentBalance) {
+        alert('Insufficient balance for this withdrawal.');
+        return; 
+    }
+
+    let bankDetails = {};
+    let walletAddress = '';
+
+    if (method === 'bank') {
+        bankDetails = {
+            bankName: document.getElementById('bank-name').value,
+            accountName: document.getElementById('account-name').value,
+            accountNumber: document.getElementById('account-number').value
+        };
+    } else if (method === 'wallet') {
+        walletAddress = document.getElementById('wallet-address').value;
+    }
+
+    fetch('/api/withdraw', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userEmail, 
+            amount, 
+            method, 
+            walletAddress, 
+            bankDetails
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message); // Display success message to the user
+        if (data.message.includes("submitted successfully")) {
+            window.location.reload(); // Reload page to update balance
+        }
+    })
+    .catch(error => console.error('Error processing withdrawal:', error));
+});
+
+});
+</script>
+
+</body>
+</html>
