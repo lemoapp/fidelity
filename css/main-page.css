@@ -166,16 +166,15 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: #ffffff;
+    background: #0f1115;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
     /* font-weight: bold; */
     z-index: 9999;
-    color:  rgb(42, 46, 255);
+    color:  #4caf50;
 }
-
  .bottom-nav {
       position: fixed;
       bottom: 0;
