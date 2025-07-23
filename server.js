@@ -313,18 +313,19 @@ app.get('/api/user/history', async (req, res) => {
 
     console.log("Fetching deposit history for:", email);
 
-    // Adjust this based on your actual DB method
-    const history = await db.query(
+    // Destructure only the result rows
+    const [history] = await db.query(
       'SELECT amount, date FROM deposits WHERE email = ? ORDER BY date ASC',
       [email]
     );
 
-    res.json({ history }); // 👈 match expected frontend format
+    res.json({ history }); // Now it's clean: just the data array
   } catch (error) {
     console.error("Error fetching user history:", error);
     res.status(500).json({ error: "Server error" });
   }
 });
+
 
 
 
