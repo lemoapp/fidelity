@@ -9,7 +9,9 @@ const cors = require('cors');
 const path = require('path');
 const cron = require('node-cron');
 const fetch = require('node-fetch');
-const NEWS_API_URL = 'https://newsapi.org/v2/top-headlines'; // or whatever API endpoint you're using
+const axios = require('axios');
+const CRYPTOPANIC_API = 'https://cryptopanic.com/api/developer/v2/posts';
+const CRYPTOPANIC_KEY = '427707348c675f9456effa56a6bd68339af6877f';
 
 
 
@@ -233,53 +235,95 @@ app.post('/api/login', async (req, res) => {
 });
 
 
+// app.get('/api/news', async (req, res) => {
+//   const category = req.query.category || 'general';
+//   const NEWS_API_KEY = '16a42969c1424ceb879197d2e62c760a';
+//   const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${NEWS_API_KEY}`;
+
+//   try {
+//     const response = await fetch(url, {
+//       headers: { 'Accept': 'application/json' },
+//     });
+
+//     const contentType = response.headers.get('content-type');
+    
+//     if (!contentType || !contentType.includes('application/json')) {
+//       const rawText = await response.text();
+//       console.error('Non-JSON response body:', rawText);
+//       throw new Error('Expected JSON but got something else');
+//     }
+
+//     const data = await response.json();
+//     console.log('Raw API data:', data);
+
+
+//     if (!data.articles) {
+//       console.error('API response missing "articles":', data);
+//       throw new Error('Missing "articles" field in API response');
+//     }
+
+//     // ✅ FIX HERE: send response as { news: [...] }
+//     const transformed = data.articles.map(article => ({
+//       title: article.title,
+//       description: article.description || '',
+//       imgUrl: article.urlToImage || 'https://via.placeholder.com/400x200?text=No+Image',
+//       link: article.url,
+//       feedDate: article.publishedAt
+//     }));
+
+//     console.log('News fetched successfully');
+//     res.json({ news: transformed }); // ✅ match frontend expectations
+//     console.log(transformed)
+//   } catch (error) {
+//     console.error('Error fetching news:', error.message);
+//     res.status(500).json({ error: 'Failed to fetch news. See logs for more info.' });
+//   }
+// });
+
+
 app.get('/api/news', async (req, res) => {
-  const category = req.query.category || 'general';
-  const NEWS_API_KEY = '16a42969c1424ceb879197d2e62c760a';
-  const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${NEWS_API_KEY}`;
+  const category = (req.query.category || '').toLowerCase();
 
   try {
-    const response = await fetch(url, {
-      headers: { 'Accept': 'application/json' },
-    });
+    let news = [];
 
-    const contentType = response.headers.get('content-type');
+    if (['crypto', 'defi', 'nft'].includes(category)) {
+      // Handle CryptoPanic categories
+      const filterParam = category === 'crypto' ? '' : `&filter=${category}`;
+      const response = await axios.get(`${CRYPTOPANIC_API}/?auth_token=${CRYPTOPANIC_KEY}${filterParam}`);
+      const posts = response.data.results || [];
+
+      news = posts.map(post => ({
+        title: post.title,
+        summary: post.description,
+        url: post.url,
+        published_at: post.published_at,
+        image: post.metadata?.image || null,
+        source: post.source?.title || 'CryptoPanic'
+      }));
+
+      return res.json({ success: true, category, news });
+    } 
     
-    if (!contentType || !contentType.includes('application/json')) {
-      const rawText = await response.text();
-      console.error('Non-JSON response body:', rawText);
-      throw new Error('Expected JSON but got something else');
+    else if (['gold', 'realestate'].includes(category)) {
+      // Placeholder response for now
+      return res.json({
+        success: true,
+        category,
+        news: [],
+        message: `Real-time ${category} news will be available soon.`
+      });
+    } 
+    
+    else {
+      return res.status(400).json({ success: false, error: 'Invalid category' });
     }
 
-    const data = await response.json();
-    console.log('Raw API data:', data);
-
-
-    if (!data.articles) {
-      console.error('API response missing "articles":', data);
-      throw new Error('Missing "articles" field in API response');
-    }
-
-    // ✅ FIX HERE: send response as { news: [...] }
-    const transformed = data.articles.map(article => ({
-      title: article.title,
-      description: article.description || '',
-      imgUrl: article.urlToImage || 'https://via.placeholder.com/400x200?text=No+Image',
-      link: article.url,
-      feedDate: article.publishedAt
-    }));
-
-    console.log('News fetched successfully');
-    res.json({ news: transformed }); // ✅ match frontend expectations
-    console.log(transformed)
   } catch (error) {
-    console.error('Error fetching news:', error.message);
-    res.status(500).json({ error: 'Failed to fetch news. See logs for more info.' });
+    console.error('News fetch error:', error.message);
+    return res.status(500).json({ success: false, error: 'Failed to fetch news' });
   }
 });
-
-
-
 
 
 

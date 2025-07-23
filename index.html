@@ -53,60 +53,69 @@
   </div>
 
   <script>
-    const splash = document.getElementById("splash");
-    const welcome = document.getElementById("welcome");
+  const splash = document.getElementById("splash");
+  const welcome = document.getElementById("welcome");
 
+  // Splash screen timer
+  setTimeout(() => {
+    splash.style.opacity = 0;
     setTimeout(() => {
-      splash.style.opacity = 0;
-      setTimeout(() => {
-        splash.style.display = "none";
-        if (localStorage.getItem("email")) {
-          window.location.href = "market.html";
-        } else {
-          welcome.style.display = "block";
-        }
-      }, 600);
-    }, 5000);
+      splash.style.display = "none";
 
-    const slideContainer = document.getElementById("slideContainer");
-    const prevBtn = document.getElementById("prev");
-    const nextBtn = document.getElementById("next");
-    const getStartedBtn = document.getElementById("getStarted");
+      // Check if onboarding has already been completed
+      const onboardingComplete = localStorage.getItem("onboardingComplete");
 
-    let currentSlide = 0;
-    const totalSlides = 4;
-
-    function updateSlide() {
-      slideContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-      getStartedBtn.style.display = currentSlide === totalSlides - 1 ? "inline-block" : "none";
-    }
-
-    prevBtn.addEventListener("click", () => {
-      if (currentSlide > 0) currentSlide--;
-      updateSlide();
-    });
-
-    nextBtn.addEventListener("click", () => {
-      if (currentSlide < totalSlides - 1) currentSlide++;
-      updateSlide();
-    });
-
-    getStartedBtn.addEventListener("click", () => {
-      window.location.href = "signup.html";
-    });
-
-    let startX = 0;
-    slideContainer.addEventListener("touchstart", (e) => startX = e.touches[0].clientX);
-    slideContainer.addEventListener("touchend", (e) => {
-      const endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50 && currentSlide < totalSlides - 1) {
-        currentSlide++;
-        updateSlide();
-      } else if (endX - startX > 50 && currentSlide > 0) {
-        currentSlide--;
-        updateSlide();
+      if (onboardingComplete === "true") {
+        window.location.href = "login.html";
+      } else {
+        welcome.style.display = "block";
       }
-    });
-  </script>
+    }, 600);
+  }, 5000);
+
+  const slideContainer = document.getElementById("slideContainer");
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+  const getStartedBtn = document.getElementById("getStarted");
+
+  let currentSlide = 0;
+  const totalSlides = 4;
+
+  function updateSlide() {
+    slideContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    getStartedBtn.style.display = currentSlide === totalSlides - 1 ? "inline-block" : "none";
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (currentSlide > 0) currentSlide--;
+    updateSlide();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentSlide < totalSlides - 1) currentSlide++;
+    updateSlide();
+  });
+
+  getStartedBtn.addEventListener("click", () => {
+    // Mark onboarding as complete and redirect to signup
+    localStorage.setItem("onboardingComplete", "true");
+    window.location.href = "signup.html";
+  });
+
+  // Swipe support for touch devices
+  let startX = 0;
+  slideContainer.addEventListener("touchstart", (e) => startX = e.touches[0].clientX);
+  slideContainer.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50 && currentSlide < totalSlides - 1) {
+      currentSlide++;
+      updateSlide();
+    } else if (endX - startX > 50 && currentSlide > 0) {
+      currentSlide--;
+      updateSlide();
+    }
+  });
+</script>
+
 </body>
 </html>

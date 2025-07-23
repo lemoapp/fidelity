@@ -67,9 +67,14 @@
         + New Transaction
       </button>
     </div>
-</a>
+</a><br>
+
+    <div id="news-section" style="padding: 0px 10px;">
+      <!-- <div class="loader" id="loader" >Loading...</div> -->
+      <div id="news-container" class="news-grid"></div>
+    </div>  
     <div class="spinner" id="loadingSpinner"></div>
-    
+  
 
     <!-- Hero Section -->
     <section class="hero">
@@ -143,7 +148,7 @@
 
     <div class="bottom-nav">
     <div class="active">Portfolio</div>
-    <a href="deposit-crypto.html"><div>Deposit</div></a>
+    <a href="user-dashboard.html"><div>Market</div></a>
     <a href="assets.html"><div>Assets</div></a>
   </div>
     <footer>
@@ -344,6 +349,67 @@ new Chart(ctx, {
 }
 
 });
+
+const buttons = document.querySelectorAll('.category-buttons button');
+const loader = document.getElementById('loader');
+const newsContainer = document.getElementById('news-container');
+
+const API_BASE = '/api/news'; // adjust if using full domain
+
+async function fetchNews(category) {
+  loader.style.display = 'block';
+  newsContainer.innerHTML = '';
+
+  try {
+    const res = await fetch(`${API_BASE}?category=${category}`);
+    const data = await res.json();
+
+    loader.style.display = 'none';
+
+    if (!data.news || data.news.length === 0) {
+      newsContainer.innerHTML = `<p>No news available for ${category} yet.</p>`;
+      return;
+    }
+
+    // ✅ Limit to 6 news items
+    data.news.slice(0, 6).forEach(article => {
+      const card = document.createElement('div');
+      card.className = 'news-card';
+
+      card.innerHTML = `
+        ${article.image ? `<img src="${article.image}" alt="News Image" />` : ''}
+        <div class="news-content">
+          <div class="news-title">${article.title}</div>
+          <div class="news-meta">
+            ${article.source || 'Unknown source'} • 
+            ${new Date(article.published_at).toLocaleDateString()}
+          </div>
+          <a href="${article.url}" target="_blank" class="news-link">Read more</a>
+        </div>
+      `;
+
+      newsContainer.appendChild(card);
+    });
+
+  } catch (err) {
+    loader.style.display = 'none';
+    newsContainer.innerHTML = `<p>Error fetching news. Please try again later.</p>`;
+    console.error(err);
+  }
+}
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelector('.category-buttons button.active')?.classList.remove('active');
+    btn.classList.add('active');
+    const category = btn.getAttribute('data-category');
+    fetchNews(category);
+  });
+});
+
+// Load default category
+fetchNews('crypto');
+
 </script>
 
 

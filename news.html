@@ -1,128 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto News - Fidelity</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Hub</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #ffffff;
-      color: #1e293b;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('/images/Desktop\ -\ 5.png');
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.category-buttons button {
+  padding: 5px 8px;
+  border: none;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 11px;
+}
+
+.category-buttons button.active {
+   background: linear-gradient(to right, #23272f, #0f1115, #0f1115);
+  color: #4caf50;
+}
+
+.category-buttons button:hover {
+  background-color: #bbb;
+}
+
+.loader {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 30px;
+  display: none;
+}
+
+.news-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+
+.news-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.news-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.news-content {
+  padding: 15px;
+}
+
+.news-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.news-meta {
+  font-size: 10px;
+  color: #666;
+}
+
+.news-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #0f1115;
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.75rem 0;
     }
-    .tab-active {
-      @apply bg-orange-500 text-white;
+    .bottom-nav a{
+      font-weight: bold;
+      font-size: 13px;
+      color: white;
+      text-decoration: none;
     }
+    .bottom-nav div {
+      font-size: 13px;
+      opacity: 0.6;
+    }
+    .bottom-nav div.active {
+      opacity: 1;
+      font-weight: bold;
+      color: #4caf50;
+      background-color: #0f1115;
+    }
+
   </style>
 </head>
-<body class="min-h-screen">
+<body>
+  <div class="container">
+    <h1>Market News</h1>
+    <div class="category-buttons">
+      <button data-category="crypto" class="active">Crypto</button>
+      <button data-category="nft">NFT</button>
+      <button data-category="gold">Gold</button>
+      <button data-category="realestate">Real Estate</button>
+      <button data-category="defi">DeFi</button>
+    </div>
 
-  <!-- Header -->
-  <header class="w-full py-4 px-6 border-b shadow-sm flex justify-between items-center">
-    <h1 class="text-2xl font-semibold text-orange-500">Fidelity News</h1>
-  </header>
-
-  <!-- Filter Tabs -->
-  <div class="flex justify-center mt-4 space-x-4">
-    <button class="filter-tab tab-active px-4 py-2 rounded-xl font-medium" data-filter="all">All</button>
-    <button class="filter-tab px-4 py-2 rounded-xl font-medium text-orange-500 border border-orange-500" data-filter="trending">Trending</button>
-    <button class="filter-tab px-4 py-2 rounded-xl font-medium text-orange-500 border border-orange-500" data-filter="market">Market Updates</button>
+    <div id="news-section">
+      <div class="loader" id="loader">Loading...</div>
+      <div id="news-container" class="news-grid"></div>
+    </div>
   </div>
 
-  <!-- News Grid -->
-  <section id="news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 py-8">
-    <!-- Dynamic news cards go here -->
-  </section>
+   <div class="bottom-nav">
+    <div class="active">News</div>
+    <a href="user-dashboard.html"><div>Market</div></a>
+    <a href="main-page.html"><div>Portfolio</div></a>
+  </div>
+<script>
+  const buttons = document.querySelectorAll('.category-buttons button');
+const loader = document.getElementById('loader');
+const newsContainer = document.getElementById('news-container');
 
-  <!-- Loading State -->
-  <div id="loading" class="text-center text-gray-500 py-6 hidden">Loading news...</div>
+const API_BASE = '/api/news'; // adjust if using full domain
 
-  <script>
-  const container = document.getElementById('news-container');
-  const loading = document.getElementById('loading');
-  const tabs = document.querySelectorAll('.filter-tab');
-  const category = "all";
-  const apiUrl = `/api/news?category=${category}`;
+async function fetchNews(category) {
+  loader.style.display = 'block';
+  newsContainer.innerHTML = '';
 
-  let newsData = [];
+  try {
+    const res = await fetch(`${API_BASE}?category=${category}`);
+    const data = await res.json();
 
-  function createCard(item) {
-    return `
-      <a href="${item.link}" target="_blank" class="block bg-white hover:shadow-lg rounded-2xl overflow-hidden border transition-all">
-        <img src="${item.imgUrl}" class="w-full h-48 object-cover" />
-        <div class="p-4">
-          <h2 class="font-semibold text-lg mb-2 line-clamp-2">${item.title}</h2>
-          <p class="text-sm text-gray-600 line-clamp-3">${item.description}</p>
-          <div class="mt-3 text-xs text-gray-400">${new Date(item.feedDate).toLocaleDateString()}</div>
+    loader.style.display = 'none';
+
+    if (data.news.length === 0) {
+      newsContainer.innerHTML = `<p>No news available for ${category} yet.</p>`;
+      return;
+    }
+
+    data.news.forEach(article => {
+      const card = document.createElement('div');
+      card.className = 'news-card';
+
+      card.innerHTML = `
+        ${article.image ? `<img src="${article.image}" alt="News Image" />` : ''}
+        <div class="news-content">
+          <div class="news-title">${article.title}</div>
+          <div class="news-meta">
+            ${article.source || 'Unknown source'} • 
+            ${new Date(article.published_at).toLocaleDateString()}
+          </div>
+          <a href="${article.url}" target="_blank" class="news-link">Read more</a>
         </div>
-      </a>
-    `;
-  }
+      `;
 
-  function renderNews(filter = 'all') {
-    container.innerHTML = '';
-    let filtered = [...newsData];
-
-    if (filter === 'trending') {
-      filtered = filtered.filter(item =>
-        item.title.toLowerCase().includes('bitcoin') ||
-        item.title.toLowerCase().includes('ethereum')
-      );
-    } else if (filter === 'market') {
-      filtered = filtered.filter(item =>
-        item.title.toLowerCase().includes('price') ||
-        item.title.toLowerCase().includes('market')
-      );
-    }
-
-    if (filtered.length === 0) {
-      container.innerHTML = '<p class="text-center col-span-full text-gray-500">No news found.</p>';
-    } else {
-      filtered.forEach(item => {
-        container.innerHTML += createCard(item);
-      });
-    }
-  }
-
-  async function loadNews() {
-    loading.classList.remove('hidden');
-
-    try {
-      const res = await fetch(apiUrl);
-
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-
-      const data = await res.json();
-
-      if (!data.news || !Array.isArray(data.news)) {
-        throw new Error("Unexpected response format");
-      }
-
-      newsData = data.news;
-      renderNews();
-
-    } catch (err) {
-      console.error("News fetch error:", err);
-      container.innerHTML = '<p class="text-center col-span-full text-red-500">Failed to load news.</p>';
-    }
-
-    loading.classList.add('hidden');
-  }
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('tab-active'));
-      tab.classList.add('tab-active');
-      renderNews(tab.dataset.filter);
+      newsContainer.appendChild(card);
     });
+
+  } catch (err) {
+    loader.style.display = 'none';
+    newsContainer.innerHTML = `<p>Error fetching news. Please try again later.</p>`;
+    console.error(err);
+  }
+}
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelector('.category-buttons button.active')?.classList.remove('active');
+    btn.classList.add('active');
+    const category = btn.getAttribute('data-category');
+    fetchNews(category);
   });
+});
 
-  loadNews();
+// Load default category
+fetchNews('crypto');
+
 </script>
-
-
 </body>
 </html>
