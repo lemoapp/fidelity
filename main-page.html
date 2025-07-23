@@ -56,8 +56,8 @@
     </a>
   </div>
 </section>
-<div id="chartContainer">
-    <canvas id="lineChart" width="100%" height="1px"></canvas>
+<div id="chartContainer" style="width: 100%;">
+    <canvas id="lineChart" width="100vw" height="1px"></canvas>
 </div>
 
 
@@ -247,16 +247,18 @@ if (userEmail) {
 
             // Create chart wrapper
             const chartWrapper = document.createElement('div');
-            // chartWrapper.style.marginTop = '';
-            // chartWrapper.style.padding = '1rem';
-            chartWrapper.style.backgroundColor = '#fff';
-            chartWrapper.style.borderRadius = '8px';
-            chartWrapper.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+chartWrapper.style.backgroundColor = '#fff';
+chartWrapper.style.borderRadius = '8px';
+chartWrapper.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+chartWrapper.style.width = '99%'; // ✅ make wrapper take full width
+chartWrapper.style.overflowX = 'auto'; // optional: handles overflow gracefully
 
-            // Create canvas element for chart
-            const canvas = document.createElement('canvas');
-            canvas.id = 'investmentChart';
-            canvas.height = 150;
+// Create canvas element for chart
+const canvas = document.createElement('canvas');
+canvas.id = 'lineChart';
+canvas.style.width = '100%'; // ✅ fill parent div
+canvas.style.height = '250px'; // optional: adjust height as needed
+canvas.height = 150; // can keep or remove based on how you're sizing
 
             chartWrapper.appendChild(canvas);
 
@@ -295,7 +297,7 @@ new Chart(ctx, {
     },
     scales: {
      x: {
-  display: true,
+  display: false,
   ticks: {
     color: '#ccc',       // Light gray text
     font: {

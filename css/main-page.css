@@ -253,9 +253,10 @@ body {
 
 
 #balance {
-    font-size: 20px;
+    font-size: 24px;
     margin-right: 10px;
     color: #4caf50;
+    font-weight: bold;
 }
 
 button {
