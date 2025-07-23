@@ -119,8 +119,11 @@ body {
 
 .cta-button {
     padding: 10px 20px;
-    background-color: #fff;
-    color: #333;
+     color: #4caf50;
+    font-weight: bold;
+    font-size: 16px;
+    /* background: linear-gradient(to right, purple, rgb(255, 205, 136), rgb(255, 166, 42)); */
+     background: linear-gradient(to right, #23272f, #0f1115, #0f1115);
     text-decoration: none;
     font-size: 14px;
     border-radius: 5px;
@@ -275,11 +278,11 @@ button img {
 }
 
 .button button{
-    color: rgb(0, 0, 0);
+    color: #4caf50;
     font-weight: bold;
     font-size: 16px;
     /* background: linear-gradient(to right, purple, rgb(255, 205, 136), rgb(255, 166, 42)); */
-    background-color: rgba(212, 212, 212, 0.106);
+     background: linear-gradient(to right, #23272f, #0f1115, #0f1115);
     padding: 9px 9px;
     margin-top: 2.5rem;
     border-radius: 10px;
