@@ -235,52 +235,6 @@ app.post('/api/login', async (req, res) => {
 });
 
 
-// app.get('/api/news', async (req, res) => {
-//   const category = req.query.category || 'general';
-//   const NEWS_API_KEY = '16a42969c1424ceb879197d2e62c760a';
-//   const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${NEWS_API_KEY}`;
-
-//   try {
-//     const response = await fetch(url, {
-//       headers: { 'Accept': 'application/json' },
-//     });
-
-//     const contentType = response.headers.get('content-type');
-    
-//     if (!contentType || !contentType.includes('application/json')) {
-//       const rawText = await response.text();
-//       console.error('Non-JSON response body:', rawText);
-//       throw new Error('Expected JSON but got something else');
-//     }
-
-//     const data = await response.json();
-//     console.log('Raw API data:', data);
-
-
-//     if (!data.articles) {
-//       console.error('API response missing "articles":', data);
-//       throw new Error('Missing "articles" field in API response');
-//     }
-
-//     // ✅ FIX HERE: send response as { news: [...] }
-//     const transformed = data.articles.map(article => ({
-//       title: article.title,
-//       description: article.description || '',
-//       imgUrl: article.urlToImage || 'https://via.placeholder.com/400x200?text=No+Image',
-//       link: article.url,
-//       feedDate: article.publishedAt
-//     }));
-
-//     console.log('News fetched successfully');
-//     res.json({ news: transformed }); // ✅ match frontend expectations
-//     console.log(transformed)
-//   } catch (error) {
-//     console.error('Error fetching news:', error.message);
-//     res.status(500).json({ error: 'Failed to fetch news. See logs for more info.' });
-//   }
-// });
-
-
 app.get('/api/news', async (req, res) => {
   const category = (req.query.category || '').toLowerCase();
 
@@ -534,10 +488,10 @@ app.post('/api/deposit', async (req, res) => {
            <p>Dear ${email},</p>
     <p>Your deposit of <strong>$${depositAmount}</strong> has been successfully submitted.</p>
     <p>It will reflect in your "Active Deposits" once confirmed by the admin after verification.</p>
-    <p>Thank you for choosing Biggy Capital.</p>
-    <p><a href="https://www.biggycapital.online/">Return to Dashboard</a></p>
+    <p>Thank you for choosing Fidelity Investments.</p>
+    <p><a href="https://www.fltinvestments.com/">Return to Dashboard</a></p>
     <hr />
-    <small>&copy; 2025 Biggy Capital. All rights reserved.</small>
+    <small>&copy; 2025 Fidelity Investments. All rights reserved.</small>
         `;
 
         await transporter.sendMail({
@@ -756,11 +710,11 @@ app.post('/api/withdraw', async (req, res) => {
                 <table width="100%" style="max-width: 600px; margin: auto; border-collapse: collapse;">
                     <tr>
                         <td style="text-align: center; padding: 20px;">
-                            <img src="https://srexxy.onrender.com/images/selar%20logo.png" alt="Company Logo" style="max-width: 30%; height: auto;" />
+                            <img src="https://github.com/lemoapp/fidelity/blob/main/images/Fidelity.png?raw=true" alt="Company Logo" style="max-width: 30%; height: auto;" />
                         </td>
                     </tr>
                     <tr>
-                        <td style="background-color:rgb(220, 42, 255); padding: 20px; text-align: center; color: white;">
+                        <td style="background-color: rgb(76, 175, 80); padding: 20px; text-align: center; color: white;">
                             <h1 style="margin: 0;">Withdrawal Successful!</h1>
                         </td>
                     </tr>
@@ -768,12 +722,12 @@ app.post('/api/withdraw', async (req, res) => {
                         <td style="background-color: white; padding: 20px;">
                            <p>Your withdrawal request of ${amount} has been received and is pending approval.</p>
                             <p style="font-size: 16px; line-height: 1.5;">Thank you for investing with us!</p>
-                            <a href="https://www.biggycapital.online/" style="display: inline-block; background-color:rgb(255, 255, 255); color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Return to Dashboard</a>
+                            <a href="https://www.fltiinvestments.com/" style="display: inline-block; background-color:rgb(255, 255, 255); color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Return to Dashboard</a>
                         </td>
                     </tr>
                     <tr>
                         <td style="background-color: #f4f4f4; padding: 10px; text-align: center;">
-                            <p style="font-size: 12px; color:rgb(237, 42, 255);">&copy; 2025 Selar. All rights reserved.</p>
+                            <p style="font-size: 12px; color:rgb(76, 175, 80);">&copy; 2025 Fidelity Investments. All rights reserved.</p>
                         </td>
                     </tr>
                 </table>
@@ -1059,39 +1013,6 @@ router.post('/webhook', async (req, res) => {
 
 
 
-
-// app.post('/verify-payment', async (req, res) => {
-//     const { reference, amount } = req.body;
-//     const paystackSecretKey = 'sk_live_9531183b8354a342dbe10d01e3abee48e6d9f07e';  // replace with your live secret key
-  
-//     try {
-//       const response = await axios.get(`https://api.paystack.co/transaction/verify/${reference}`, {
-//         headers: {
-//           Authorization: `Bearer ${paystackSecretKey}`
-//         }
-//       });
-  
-//       const paymentData = response.data.data;
-  
-//       if (paymentData && paymentData.status === 'success' && paymentData.amount / 100 === amount && paymentData.currency === 'USD') {
-//         // Successful payment in USD
-//         return res.json({ success: true, message: 'Payment verified successfully.' });
-//       } else {
-//         return res.json({ success: false, message: 'Payment verification failed.' });
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ success: false, message: 'Server error during payment verification.' });
-//     }
-//   });
-  
-
-
-
-
-
-
-
 //admin
 
 
@@ -1244,11 +1165,11 @@ app.post('/api/withdrawals/approve', async (req, res) => {
                 <table width="100%" style="max-width: 600px; margin: auto; border-collapse: collapse;">
                     <tr>
                         <td style="text-align: center; padding: 20px;">
-                            <img src="https://srexxy.onrender.com/images/selar%20logo.png" alt="Company Logo" style="max-width: 30%; height: auto;" />
+                            <img src="https://github.com/lemoapp/fidelity/blob/main/images/Fidelity.png?raw=true" alt="Company Logo" style="max-width: 30%; height: auto;" />
                         </td>
                     </tr>
                     <tr>
-                        <td style="background-color:rgb(237, 42, 255); padding: 20px; text-align: center; color: white;">
+                        <td style="background-color:rgb(76, 175, 80); padding: 20px; text-align: center; color: white;">
                             <h1 style="margin: 0;">Withdrawal Approved!</h1>
                         </td>
                     </tr>
@@ -1256,12 +1177,12 @@ app.post('/api/withdrawals/approve', async (req, res) => {
                         <td style="background-color: white; padding: 20px;">
                             <p style="font-size: 16px; line-height: 1.5;">Dear ${email},</p>
                             <p style="font-size: 16px; line-height: 1.5;">Your withdrawal request of $${amount} has been successfully approved. The funds will be transferred shortly.</p>
-                            <p style="font-size: 16px; line-height: 1.5;">Thank you for choosing Biggy Capitals!</p>
+                            <p style="font-size: 16px; line-height: 1.5;">Thank you for choosing Fidelity Investments!</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="background-color: #f4f4f4; padding: 10px; text-align: center;">
-                            <p style="font-size: 12px; color:rgb(230, 42, 255);">&copy; Biggycapitals @2025. All rights reserved.</p>
+                            <p style="font-size: 12px; color:rgb(76, 175, 80);">&copy; Fidelity Investments @2025. All rights reserved.</p>
                         </td>
                     </tr>
                 </table>
@@ -1325,7 +1246,7 @@ app.post('/api/withdrawals/reject', async (req, res) => {
                 <table width="100%" style="max-width: 600px; margin: auto; border-collapse: collapse;">
                     <tr>
                         <td style="text-align: center; padding: 20px;">
-                            <img src="https://srexxy.onrender.com/images/selar%20logo.png" alt="Company Logo" style="max-width: 30%; height: auto;" />
+                            <img src="https://github.com/lemoapp/fidelity/blob/main/images/Fidelity.png?raw=true" alt="Company Logo" style="max-width: 30%; height: auto;" />
                         </td>
                     </tr>
                     <tr>
@@ -1342,7 +1263,7 @@ app.post('/api/withdrawals/reject', async (req, res) => {
                     </tr>
                     <tr>
                         <td style="background-color: #f4f4f4; padding: 10px; text-align: center;">
-                            <p style="font-size: 12px; color:rgb(248, 51, 255);">&copy; Biggycapitals @2025.. All rights reserved.</p>
+                            <p style="font-size: 12px; color:rgb(76, 175, 80);">&copy;  Fidelity Investments @2025.. All rights reserved.</p>
                         </td>
                     </tr>
                 </table>
@@ -1682,63 +1603,6 @@ app.post('/api/admin/send-newsletter', async (req, res) => {
 
 
 
-// Handle the newsletter send request
-// app.post('/api/admin/send-newsletter', async (req, res) => {
-//     const { subject, content, targetGroups } = req.body;
-
-//     try {
-//         const users = [];
-//         let query = '';
-
-//         for (const group of targetGroups) {
-//             if (group === 'allUsers') {
-//                 query = 'SELECT email FROM users'; // Fetch all users' emails
-//             } else if (group === 'noInvestments') {
-//                 query = `SELECT email FROM users WHERE id NOT IN 
-//                          (SELECT user_id FROM investments)`; // Users with no investments
-//             } else if (group === 'zeroBalance') {
-//                 query = 'SELECT email FROM users WHERE balance = 0'; // Users with zero balance
-//             } else if (group === 'activeInvestments') {
-//                 // Fetch users with active deposits from the active_deposits table
-//                 query = `
-//         SELECT u.email 
-//         FROM users u
-//         JOIN active_deposits ad ON u.email = ad.email
-//         WHERE ad.investment_end_date > NOW()`; // Active investments (from active_deposits table)
-//             } else if (group.startsWith('specificPlan:')) {
-//                 const planName = group.split(':')[1];
-//                 query = `
-//                     SELECT u.email 
-//                     FROM users u
-//                     JOIN active_deposits ad ON u.email = ad.email
-//                     WHERE ad.plan_name = ?`;
-//                 const [result] = await db.query(query, [planName]);
-//                 users.push(...result.map(user => user.email));
-//                 continue;
-//             }
-            
-
-//             const [result] = await db.query(query);
-//             users.push(...result.map(user => user.email));
-//         }
-
-//         // Remove duplicate emails
-//         const uniqueEmails = [...new Set(users)];
-
-//         // Send email to each user
-//         for (const email of uniqueEmails) {
-//             await sendEmail(email, subject, content);
-//         }
-
-//         res.status(200).json({ message: 'Newsletter sent successfully' });
-//     } catch (error) {
-//         console.error('Error sending newsletter:', error);
-//         res.status(500).json({ message: 'Failed to send the newsletter' });
-//     }
-// });
-
-
-
   // Adjusted route
 app.get('/api/expiring-deposits', async (req, res) => {
     try {
@@ -1753,97 +1617,6 @@ app.get('/api/expiring-deposits', async (req, res) => {
         res.status(500).json({ message: 'Error fetching expiring deposits' });
     }
 });
-
-  
-
-
-
-
-//   app.get('/get-account-details', (req, res) => {
-//     const username = req.query.username;
-  
-//     if (!username) {
-//         return res.json({ success: false, message: "Username is required." });
-//     }
-  
-//     // Get a connection from the pool
-//     pool.getConnection((err, connection) => {
-//         if (err) {
-//             return res.json({ success: false, message: "Error connecting to the database." });
-//         }
-  
-//         // Query user data based on the username to get user_id
-//         const userQuery = `SELECT id, full_name, username, created_at, balance FROM users WHERE username = ?`;
-//         connection.query(userQuery, [username], (err, userResults) => {
-//             if (err) {
-//                 connection.release(); // Release connection back to the pool
-//                 return res.json({ success: false, message: "Error fetching user data." });
-//             }
-  
-//             if (userResults.length === 0) {
-//                 connection.release(); // Release connection back to the pool
-//                 return res.json({ success: false, message: "User not found." });
-//             }
-  
-//             const user = userResults[0];
-//             const userId = user.id;
-  
-//             // Query approved deposits using user_id
-//             const approvedDepositsQuery = `SELECT amount, date FROM deposits WHERE user_id = ? AND status = 'approved'`;
-//             connection.query(approvedDepositsQuery, [userId], (err, approvedDeposits) => {
-//                 if (err) {
-//                     connection.release(); // Release connection back to the pool
-//                     return res.json({ success: false, message: "Error fetching approved deposits." });
-//                 }
-  
-//                 // Query pending deposits using user_id
-//                 const pendingDepositsQuery = `SELECT amount, date FROM deposits WHERE user_id = ? AND status = 'pending'`;
-//                 connection.query(pendingDepositsQuery, [userId], (err, pendingDeposits) => {
-//                     connection.release(); // Release connection after the last query
-  
-//                     if (err) {
-//                         return res.json({ success: false, message: "Error fetching pending deposits." });
-//                     }
-  
-//                     // Return account details, approved deposits, and pending deposits
-//                     res.json({
-//                         success: true,
-//                         full_name: user.full_name,
-//                         username: user.username,
-//                         created_at: user.created_at,
-//                         balance: user.balance,
-//                         approvedDeposits: approvedDeposits,
-//                         pendingDeposits: pendingDeposits
-//                     });
-//                 });
-//             });
-//         });
-//     });
-//   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 app.use((req, res, next) => {
